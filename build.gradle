@@ -1,17 +1,67 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
+ext {
+    compileSdkVersion = 28
+    targetSdkVersion = 28
+    minSdkVersion = 21
+    versionCode = 1
+    versionName = "1.0"
+    applicationId = "app.droidster.shapes"
+
+    versions = [
+            ktx               : "1.0.2",
+
+            appCompat         : "1.0.2",
+            material          : "1.0.0",
+            recyclerview      : "1.0.0",
+            constraintLayout  : "1.1.3",
+            lifecycle         : "2.0.0",
+
+            rxjava            : "2.2.9",
+            dagger            : "2.23.1",
+            findbugs          : "3.0.2",
+            timber            : "4.7.1",
+
+            jUnitJupiter      : "5.4.2",
+            mockitoKotlin     : "2.1.0",
+            mockitoInline     : "2.13.0",
+            assertJ           : "3.12.2"
+    ]
+
+    dependencies = [
+            kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
+            ktx               : "androidx.core:core-ktx:${versions.ktx}",
+
+            appCompat         : "androidx.appcompat:appcompat:${versions.appCompat}",
+            material          : "com.google.android.material:material:${versions.material}",
+            recyclerView      : "androidx.recyclerview:recyclerview:${versions.recyclerview}",
+            constraintLayout  : "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}",
+            viewmodel         : "androidx.lifecycle:lifecycle-viewmodel:${versions.lifecycle}",
+            common            : "androidx.lifecycle:lifecycle-common:${versions.lifecycle}",
+            extensions        : "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}",
+
+            rxjava            : "io.reactivex.rxjava2:rxjava:${versions.rxjava}",
+            dagger            : "com.google.dagger:dagger:${versions.dagger}",
+            daggerCompiler    : "com.google.dagger:dagger-compiler:${versions.dagger}",
+            findbugs          : "com.google.code.findbugs:jsr305:${versions.findbugs}",
+            timber            : "com.jakewharton.timber:timber:${versions.timber}",
+
+            jUnitJupiter      : "org.junit.jupiter:junit-jupiter-api:${versions.jUnitJupiter}",
+            mockitoKotlin     : "com.nhaarman.mockitokotlin2:mockito-kotlin:${versions.mockitoKotlin}",
+            mockitoInline     : "org.mockito:mockito-inline:2.13.0",
+            assertJ           : "org.assertj:assertj-core:${versions.assertJ}"
+    ]
+}
 
 buildscript {
-    ext.kotlin_version = '1.3.31'
+    ext.kotlinVersion = '1.3.31'
+    ext.agpVersion = '3.5.0-beta04'
+
     repositories {
         google()
         jcenter()
-        
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.5.0-beta04'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
+        classpath "com.android.tools.build:gradle:$agpVersion"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
 }
 
@@ -19,10 +69,41 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+        maven { url "https://jitpack.io" }
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+def config = rootProject.extensions.getByName("ext")
+
+subprojects {
+    afterEvaluate { project ->
+        if (project.hasProperty('android')) {
+            android {
+                compileSdkVersion config.compileSdkVersion
+
+                defaultConfig {
+                    minSdkVersion config.minSdkVersion
+                    targetSdkVersion config.compileSdkVersion
+                    versionCode config.versionCode
+                    versionName config.versionName
+                    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+                }
+                buildTypes {
+                    release {
+                        minifyEnabled false
+                        proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+                    }
+                }
+
+                compileOptions {
+                    sourceCompatibility JavaVersion.VERSION_1_8
+                    targetCompatibility JavaVersion.VERSION_1_8
+                }
+            }
+        }
+    }
 }
