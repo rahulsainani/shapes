@@ -7,52 +7,53 @@ ext {
     applicationId = "app.droidster.shapes"
 
     versions = [
-            ktx               : "1.0.2",
+            ktx             : "1.0.2",
 
-            appCompat         : "1.0.2",
-            material          : "1.0.0",
-            recyclerview      : "1.0.0",
-            constraintLayout  : "1.1.3",
-            lifecycle         : "2.0.0",
+            appCompat       : "1.0.2",
+            material        : "1.0.0",
+            recyclerview    : "1.0.0",
+            constraintLayout: "1.1.3",
+            lifecycle       : "2.0.0",
 
-            rxjava            : "2.2.9",
-            dagger            : "2.23.1",
-            findbugs          : "3.0.2",
-            timber            : "4.7.1",
+            rxjava          : "2.2.9",
+            dagger          : "2.23.1",
+            findbugs        : "3.0.2",
+            timber          : "4.7.1",
 
-            jUnitJupiter      : "5.4.2",
-            mockitoKotlin     : "2.1.0",
-            mockitoInline     : "2.13.0",
-            assertJ           : "3.12.2"
+            jUnitJupiter    : "5.4.2",
+            mockitoKotlin   : "2.1.0",
+            mockitoInline   : "2.13.0",
+            assertJ         : "3.12.2"
     ]
 
     dependencies = [
-            kotlin            : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
-            ktx               : "androidx.core:core-ktx:${versions.ktx}",
+            kotlin          : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
+            ktx             : "androidx.core:core-ktx:${versions.ktx}",
 
-            appCompat         : "androidx.appcompat:appcompat:${versions.appCompat}",
-            material          : "com.google.android.material:material:${versions.material}",
-            recyclerView      : "androidx.recyclerview:recyclerview:${versions.recyclerview}",
-            constraintLayout  : "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}",
-            viewmodel         : "androidx.lifecycle:lifecycle-viewmodel:${versions.lifecycle}",
-            common            : "androidx.lifecycle:lifecycle-common:${versions.lifecycle}",
-            extensions        : "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}",
+            appCompat       : "androidx.appcompat:appcompat:${versions.appCompat}",
+            material        : "com.google.android.material:material:${versions.material}",
+            recyclerView    : "androidx.recyclerview:recyclerview:${versions.recyclerview}",
+            constraintLayout: "androidx.constraintlayout:constraintlayout:${versions.constraintLayout}",
+            viewmodel       : "androidx.lifecycle:lifecycle-viewmodel:${versions.lifecycle}",
+            common          : "androidx.lifecycle:lifecycle-common:${versions.lifecycle}",
+            extensions      : "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}",
 
-            rxjava            : "io.reactivex.rxjava2:rxjava:${versions.rxjava}",
-            dagger            : "com.google.dagger:dagger:${versions.dagger}",
-            daggerCompiler    : "com.google.dagger:dagger-compiler:${versions.dagger}",
-            findbugs          : "com.google.code.findbugs:jsr305:${versions.findbugs}",
-            timber            : "com.jakewharton.timber:timber:${versions.timber}",
+            rxjava          : "io.reactivex.rxjava2:rxjava:${versions.rxjava}",
+            dagger          : "com.google.dagger:dagger:${versions.dagger}",
+            daggerCompiler  : "com.google.dagger:dagger-compiler:${versions.dagger}",
+            findbugs        : "com.google.code.findbugs:jsr305:${versions.findbugs}",
+            timber          : "com.jakewharton.timber:timber:${versions.timber}",
 
-            jUnitJupiter      : "org.junit.jupiter:junit-jupiter-api:${versions.jUnitJupiter}",
-            mockitoKotlin     : "com.nhaarman.mockitokotlin2:mockito-kotlin:${versions.mockitoKotlin}",
-            mockitoInline     : "org.mockito:mockito-inline:2.13.0",
-            assertJ           : "org.assertj:assertj-core:${versions.assertJ}"
+            jUnitJupiter    : "org.junit.jupiter:junit-jupiter-api:${versions.jUnitJupiter}",
+            mockitoKotlin   : "com.nhaarman.mockitokotlin2:mockito-kotlin:${versions.mockitoKotlin}",
+            mockitoInline   : "org.mockito:mockito-inline:2.13.0",
+            assertJ         : "org.assertj:assertj-core:${versions.assertJ}"
     ]
 }
 
 buildscript {
-    ext.kotlinVersion = '1.3.31'
+    ext.kotlin_version = '1.3.31'
+    ext.kotlinVersion = kotlin_version
     ext.agpVersion = '3.5.0-beta04'
 
     repositories {
