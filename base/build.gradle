@@ -17,6 +17,12 @@ dependencies {
     api config.dependencies.common
     api config.dependencies.extensions
 
+    // Room
+    api config.dependencies.room
+    api config.dependencies.roomRx
+    api config.dependencies.roomKtx
+    kapt config.dependencies.roomCompiler
+
     // Rx
     api config.dependencies.rxjava
 
