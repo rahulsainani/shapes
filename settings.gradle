@@ -1,4 +1,4 @@
 rootProject.name='Shapes'
 
-include ':app'
+include ':app', ':shapes'
 include ':base'

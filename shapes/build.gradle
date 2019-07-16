@@ -1,0 +1,26 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+def config = rootProject.extensions.getByName("ext")
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    api project(':base')
+
+    // Dependency Injection
+    kapt config.dependencies.daggerCompiler
+
+    // AndroidX
+    implementation config.dependencies.appCompat
+    implementation config.dependencies.constraintLayout
+    implementation config.dependencies.material
+    implementation config.dependencies.recyclerView
+
+    // Testing
+    testImplementation config.dependencies.jUnitJupiter
+    testImplementation config.dependencies.mockitoKotlin
+    testImplementation config.dependencies.mockitoInline
+    testImplementation config.dependencies.assertJ
+}
