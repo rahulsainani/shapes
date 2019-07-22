@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="triangle">Triangle</string>
+    <string name="circle">Circle</string>
+    <string name="square">Square</string>
+</resources>
