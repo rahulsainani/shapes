@@ -3,7 +3,7 @@
     >
 
     <application>
-        <activity android:name="shapes.feature.MainActivity">
+        <activity android:name="shapes.feature.presentation.ShapesEditorActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
