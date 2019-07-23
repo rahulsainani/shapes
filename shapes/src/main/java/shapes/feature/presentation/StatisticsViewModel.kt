@@ -20,7 +20,6 @@ class StatisticsViewModel @Inject constructor(
     private fun processShapesStream() =
         retrieveShapes
             .retrieveShapes()
-            .map { it.shapes }
             .firstOrError()
             .map(statisticsViewEntityMapper)
             .subscribe(

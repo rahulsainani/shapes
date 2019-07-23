@@ -57,7 +57,6 @@ class ShapesEditorViewModel @Inject constructor(
     private fun processShapesStream() =
         retrieveShapes
             .retrieveShapes()
-            .map { it.shapes }
             .throttleLast(50, TimeUnit.MILLISECONDS)
             .subscribe(
                 {

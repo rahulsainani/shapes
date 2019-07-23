@@ -5,7 +5,7 @@ import io.reactivex.Flowable
 
 interface IShapesRepository {
 
-    fun getAllShapes(): Flowable<ShapeDomainEntityList>
+    fun getAllShapes(): Flowable<List<ShapeDomainEntity>>
 
     fun addShape(shapeType: ShapeDomainEntity.Type, id: Int): Completable
 

@@ -7,7 +7,6 @@ import shapes.base.data.Stack
 import shapes.base.database.ShapesDao
 import shapes.feature.domain.IShapesRepository
 import shapes.feature.domain.ShapeDomainEntity
-import shapes.feature.domain.ShapeDomainEntityList
 import javax.inject.Inject
 
 class ShapesRepository @Inject constructor(
@@ -17,7 +16,7 @@ class ShapesRepository @Inject constructor(
     private val stack: Stack
 ) : IShapesRepository {
 
-    override fun getAllShapes(): Flowable<ShapeDomainEntityList> =
+    override fun getAllShapes(): Flowable<List<ShapeDomainEntity>> =
         shapesDao
             .getAllShapes()
             .subscribeOn(Schedulers.io())

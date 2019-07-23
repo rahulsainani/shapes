@@ -7,5 +7,5 @@ class RetrieveShapes @Inject constructor(
     private val repository: IShapesRepository
 ) {
 
-    fun retrieveShapes(): Flowable<ShapeDomainEntityList> = repository.getAllShapes()
+    fun retrieveShapes(): Flowable<List<ShapeDomainEntity>> = repository.getAllShapes()
 }

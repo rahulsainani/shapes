@@ -2,15 +2,13 @@ package shapes.feature.data
 
 import io.reactivex.functions.Function
 import shapes.base.database.ShapeDataEntity
-import shapes.feature.domain.ShapeDomainEntityList
+import shapes.feature.domain.ShapeDomainEntity
 import javax.inject.Inject
 
 class ShapesListDomainMapper @Inject constructor(
     private val shapesDomainMapper: ShapeDomainMapper
-) : Function<List<ShapeDataEntity>, ShapeDomainEntityList> {
+) : Function<List<ShapeDataEntity>, List<ShapeDomainEntity>> {
 
-    override fun apply(shapesDataList: List<ShapeDataEntity>): ShapeDomainEntityList =
-        shapesDataList
-            .map { shapesDomainMapper.apply(it) }
-            .run { ShapeDomainEntityList(this) }
+    override fun apply(shapesDataList: List<ShapeDataEntity>): List<ShapeDomainEntity> =
+        shapesDataList.map { shapesDomainMapper.apply(it) }
 }

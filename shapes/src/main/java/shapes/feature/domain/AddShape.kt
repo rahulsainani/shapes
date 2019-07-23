@@ -12,7 +12,7 @@ class AddShape @Inject constructor(
         repository
             .getAllShapes()
             .firstOrError()
-            .map { it.shapes.map { item -> item.id } }
+            .map { it.map { item -> item.id } }
             .map { randomGridPositionGenerator.generate(it) }
             .flatMapCompletable { repository.addShape(shapeType, it) }
 }
