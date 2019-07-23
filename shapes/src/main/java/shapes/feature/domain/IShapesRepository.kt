@@ -11,5 +11,7 @@ interface IShapesRepository {
 
     fun updateShape(shapeDomainEntity: ShapeDomainEntity): Completable
 
-//    fun deleteShape(shapeEntity: ShapeEntity): Completable
+    fun deleteAll(): Completable
+
+    fun undo(): Completable
 }
