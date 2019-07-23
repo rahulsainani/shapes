@@ -10,10 +10,10 @@ import shapes.base.di.AppComponentInjectHelper
 import shapes.feature.R
 import shapes.feature.di.DaggerShapesComponent
 import shapes.feature.di.ShapesModule
-import shapes.feature.domain.ShapeEntity
+import shapes.feature.domain.ShapeDomainEntity
 import javax.inject.Inject
 
-class ShapesEditorActivity : AppCompatActivity() {
+class ShapesEditorActivity : AppCompatActivity(), ShapesView.ClickListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -30,9 +30,11 @@ class ShapesEditorActivity : AppCompatActivity() {
 
         observeLiveData()
 
-        buttonTriangle.setOnClickListener {
-            viewmodel.onTriangleClick()
-        }
+        buttonCircle.setOnClickListener { viewmodel.onCircleClick() }
+        buttonSquare.setOnClickListener { viewmodel.onSquareClick() }
+        buttonTriangle.setOnClickListener { viewmodel.onTriangleClick() }
+
+        shapesView.clickListener = this
     }
 
     private fun inject() =
@@ -46,7 +48,10 @@ class ShapesEditorActivity : AppCompatActivity() {
         viewmodel.shapesLiveData.observe(this, Observer { handleScreenState(it) })
     }
 
-    private fun handleScreenState(it: List<ShapeEntity>) {
+    private fun handleScreenState(it: List<ShapeDomainEntity>) {
         shapesView.shapes = it
     }
+
+    override fun onGridItemClick(shapeDomainEntity: ShapeDomainEntity) =
+        viewmodel.onShapeClick(shapeDomainEntity)
 }
