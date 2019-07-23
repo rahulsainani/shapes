@@ -3,4 +3,5 @@
     <string name="triangle">Triangle</string>
     <string name="circle">Circle</string>
     <string name="square">Square</string>
+    <string name="undo">Undo</string>
 </resources>

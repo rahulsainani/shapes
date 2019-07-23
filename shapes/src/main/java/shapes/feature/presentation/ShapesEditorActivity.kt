@@ -1,6 +1,8 @@
 package shapes.feature.presentation
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -35,6 +37,18 @@ class ShapesEditorActivity : AppCompatActivity(), ShapesView.ClickListener {
         buttonTriangle.setOnClickListener { viewmodel.onTriangleClick() }
 
         shapesView.clickListener = this
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.undo -> viewmodel.onUndoClick()
+        }
+        return true
     }
 
     private fun inject() =

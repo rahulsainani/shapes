@@ -2,17 +2,15 @@ package shapes.feature.presentation
 
 import androidx.lifecycle.MutableLiveData
 import shapes.base.presentation.BaseViewModel
-import shapes.feature.domain.AddShape
-import shapes.feature.domain.RetrieveShapes
-import shapes.feature.domain.ShapeDomainEntity
-import shapes.feature.domain.SwitchShape
+import shapes.feature.domain.*
 import timber.log.Timber
 import javax.inject.Inject
 
 class ShapesEditorViewModel @Inject constructor(
     private val retrieveShapes: RetrieveShapes,
     private val addShape: AddShape,
-    private val switchShape: SwitchShape
+    private val switchShape: SwitchShape,
+    private val undoLastAction: UndoLastAction
 ) : BaseViewModel() {
 
     internal val shapesLiveData = MutableLiveData<List<ShapeDomainEntity>>()
@@ -36,6 +34,16 @@ class ShapesEditorViewModel @Inject constructor(
             )
             .addToCompositeDisposable()
 
+    internal fun onUndoClick() {
+        undoLastAction
+            .undo()
+            .subscribe(
+                { Timber.d("Undo successful") },
+                { Timber.e(it, "Error doing onUndoClick") }
+            )
+            .addToCompositeDisposable()
+    }
+
     private fun addShape(type: ShapeDomainEntity.Type) =
         addShape
             .addShape(type)
@@ -57,5 +65,4 @@ class ShapesEditorViewModel @Inject constructor(
                 { Timber.e(it, "Error retrieving shapes") }
             )
             .addToCompositeDisposable()
-
 }
