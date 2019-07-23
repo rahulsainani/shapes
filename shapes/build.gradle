@@ -15,7 +15,6 @@ dependencies {
     // AndroidX
     implementation config.dependencies.appCompat
     implementation config.dependencies.constraintLayout
-    implementation config.dependencies.material
     implementation config.dependencies.recyclerView
 
     // Testing

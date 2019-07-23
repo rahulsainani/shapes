@@ -16,6 +16,7 @@ dependencies {
     api config.dependencies.viewmodel
     api config.dependencies.common
     api config.dependencies.extensions
+    api config.dependencies.material
 
     // Room
     api config.dependencies.room
