@@ -1,4 +1,4 @@
-package shapes.feature.presentation
+package shapes.feature.presentation.stats
 
 import androidx.recyclerview.widget.DiffUtil
 

@@ -1,4 +1,4 @@
-package shapes.feature.presentation
+package shapes.feature.presentation.editor
 
 data class ShapeViewEntity(
     val gridPosition: Int,

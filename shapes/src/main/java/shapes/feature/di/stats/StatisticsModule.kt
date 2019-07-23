@@ -1,4 +1,4 @@
-package shapes.feature.di
+package shapes.feature.di.stats
 
 import dagger.Module
 import dagger.Provides
@@ -6,7 +6,7 @@ import shapes.feature.data.ShapesRepository
 import shapes.feature.domain.IShapesRepository
 
 @Module
-class ShapesModule {
+class StatisticsModule {
 
     @Provides
     fun provideShapesRepository(shapesRepository: ShapesRepository): IShapesRepository =

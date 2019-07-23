@@ -1,4 +1,4 @@
-package shapes.feature.presentation
+package shapes.feature.presentation.stats
 
 import io.reactivex.functions.Function
 import shapes.base.presentation.StringsProvider
@@ -25,6 +25,9 @@ class StatisticsViewEntityMapper @Inject constructor(
             Type.TRIANGLE -> stringsProvider.getString(R.string.triangle)
         }
 
-        return StatisticsItemEntity(shapeName, entry.value.size.toString())
+        return StatisticsItemEntity(
+            shapeName,
+            entry.value.size.toString()
+        )
     }
 }

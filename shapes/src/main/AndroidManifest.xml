@@ -3,7 +3,7 @@
     >
 
     <application>
-        <activity android:name="shapes.feature.presentation.ShapesEditorActivity">
+        <activity android:name="shapes.feature.presentation.editor.ShapesEditorActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -12,7 +12,7 @@
         </activity>
 
         <activity
-            android:name="shapes.feature.presentation.StatisticsActivity"
+            android:name="shapes.feature.presentation.stats.StatisticsActivity"
             android:label="@string/statistics"
             />
     </application>

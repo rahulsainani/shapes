@@ -1,10 +1,10 @@
-package shapes.feature.di
+package shapes.feature.di.stats
 
 import dagger.Component
 import shapes.base.di.PerActivity
 import shapes.base.di.component.ApplicationComponent
 import shapes.base.di.module.ViewModelFactoryModule
-import shapes.feature.presentation.StatisticsActivity
+import shapes.feature.presentation.stats.StatisticsActivity
 
 @PerActivity
 @Component(

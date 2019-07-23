@@ -1,4 +1,4 @@
-package shapes.feature.presentation
+package shapes.feature.presentation.stats
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +10,9 @@ import shapes.feature.R
 
 class StatisticsAdapter(
     private val listener: ClickListener
-) : ListAdapter<StatisticsItemEntity, RecyclerView.ViewHolder>(StatisticsDiffCallback()) {
+) : ListAdapter<StatisticsItemEntity, RecyclerView.ViewHolder>(
+    StatisticsDiffCallback()
+) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater

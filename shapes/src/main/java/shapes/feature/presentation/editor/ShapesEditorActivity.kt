@@ -1,4 +1,4 @@
-package shapes.feature.presentation
+package shapes.feature.presentation.editor
 
 import android.os.Bundle
 import android.view.Menu
@@ -7,15 +7,17 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_shapes_editor.*
 import shapes.base.di.AppComponentInjectHelper
 import shapes.feature.R
-import shapes.feature.di.DaggerShapesComponent
-import shapes.feature.di.ShapesModule
+import shapes.feature.di.editor.DaggerShapesComponent
+import shapes.feature.di.editor.ShapesModule
 import shapes.feature.domain.ShapeDomainEntity
+import shapes.feature.presentation.stats.StatisticsActivity
 import javax.inject.Inject
 
-class ShapesEditorActivity : AppCompatActivity(), ShapesView.ClickListener {
+class ShapesEditorActivity : AppCompatActivity(),
+    ShapesView.ClickListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -24,7 +26,7 @@ class ShapesEditorActivity : AppCompatActivity(), ShapesView.ClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_shapes_editor)
 
         inject()
         viewModel =

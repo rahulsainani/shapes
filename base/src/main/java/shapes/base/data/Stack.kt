@@ -20,5 +20,4 @@ class Stack @Inject constructor() {
         }
         return null
     }
-
 }

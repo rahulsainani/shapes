@@ -1,4 +1,4 @@
-package shapes.feature.presentation
+package shapes.feature.presentation.stats
 
 import android.content.Context
 import android.content.Intent
@@ -11,11 +11,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_statistics.*
 import shapes.base.di.AppComponentInjectHelper
 import shapes.feature.R
-import shapes.feature.di.DaggerStatisticsComponent
-import shapes.feature.di.StatisticsModule
+import shapes.feature.di.stats.DaggerStatisticsComponent
+import shapes.feature.di.stats.StatisticsModule
 import javax.inject.Inject
 
-class StatisticsActivity : AppCompatActivity(), StatisticsAdapter.ClickListener {
+class StatisticsActivity : AppCompatActivity(),
+    StatisticsAdapter.ClickListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory

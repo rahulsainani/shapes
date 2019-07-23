@@ -1,4 +1,4 @@
-package shapes.feature.presentation
+package shapes.feature.presentation.editor
 
 import androidx.lifecycle.MutableLiveData
 import shapes.base.presentation.BaseViewModel

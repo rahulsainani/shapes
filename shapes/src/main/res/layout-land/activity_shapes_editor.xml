@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="shapes.feature.presentation.ShapesEditorActivity">
+    tools:context="shapes.feature.presentation.editor.ShapesEditorActivity">
 
-    <shapes.feature.presentation.ShapesView
+    <shapes.feature.presentation.editor.ShapesView
         android:id="@+id/shapesView"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="64dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonCircle"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="64dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/buttonTriangle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -20,31 +20,28 @@
         android:id="@+id/buttonTriangle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
+        android:layout_marginEnd="64dp"
         android:text="@string/triangle"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonCircle"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toTopOf="@+id/buttonCircle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonCircle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/circle"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonTriangle"
-        app:layout_constraintEnd_toStartOf="@+id/buttonSquare"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonTriangle" />
+        app:layout_constraintBottom_toTopOf="@+id/buttonSquare"
+        app:layout_constraintStart_toStartOf="@+id/buttonTriangle"
+        app:layout_constraintTop_toBottomOf="@+id/buttonTriangle" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/buttonSquare"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/square"
-        app:layout_constraintBottom_toBottomOf="@+id/buttonCircle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/buttonCircle" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/buttonCircle"
+        app:layout_constraintTop_toBottomOf="@+id/buttonCircle" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

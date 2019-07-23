@@ -1,14 +1,14 @@
-package shapes.feature.di
+package shapes.feature.di.editor
 
 import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
 import shapes.base.di.ViewModelKey
-import shapes.feature.presentation.ShapesEditorViewModel
+import shapes.feature.presentation.editor.ShapesEditorViewModel
 
 @Module
-abstract class ViewModelModule {
+abstract class ShapesViewModelModule {
     @Binds
     @IntoMap
     @ViewModelKey(ShapesEditorViewModel::class)

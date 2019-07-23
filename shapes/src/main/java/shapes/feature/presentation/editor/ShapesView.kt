@@ -1,4 +1,4 @@
-package shapes.feature.presentation
+package shapes.feature.presentation.editor
 
 import android.content.Context
 import android.graphics.Canvas
