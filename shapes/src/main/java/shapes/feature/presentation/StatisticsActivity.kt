@@ -20,7 +20,7 @@ class StatisticsActivity : AppCompatActivity(), StatisticsAdapter.ClickListener 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewmodel: StatisticsViewModel
+    private lateinit var viewModel: StatisticsViewModel
 
     private val adapter by lazy { StatisticsAdapter(this) }
 
@@ -29,7 +29,7 @@ class StatisticsActivity : AppCompatActivity(), StatisticsAdapter.ClickListener 
         setContentView(R.layout.activity_statistics)
         inject()
 
-        viewmodel =
+        viewModel =
             ViewModelProviders.of(this, viewModelFactory)[StatisticsViewModel::class.java]
 
         articles_recyclerview.layoutManager = LinearLayoutManager(this)
@@ -46,7 +46,7 @@ class StatisticsActivity : AppCompatActivity(), StatisticsAdapter.ClickListener 
             .inject(this)
 
     private fun observeLiveData() {
-        viewmodel.statsListLiveData.observe(this, Observer { handleScreenState(it) })
+        viewModel.statsListLiveData.observe(this, Observer { handleScreenState(it) })
     }
 
     private fun handleScreenState(list: List<StatisticsItemEntity>) =

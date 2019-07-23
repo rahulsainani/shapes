@@ -20,21 +20,21 @@ class ShapesEditorActivity : AppCompatActivity(), ShapesView.ClickListener {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
 
-    private lateinit var viewmodel: ShapesEditorViewModel
+    private lateinit var viewModel: ShapesEditorViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         inject()
-        viewmodel =
+        viewModel =
             ViewModelProviders.of(this, viewModelFactory)[ShapesEditorViewModel::class.java]
 
         observeLiveData()
 
-        buttonCircle.setOnClickListener { viewmodel.onCircleClick() }
-        buttonSquare.setOnClickListener { viewmodel.onSquareClick() }
-        buttonTriangle.setOnClickListener { viewmodel.onTriangleClick() }
+        buttonCircle.setOnClickListener { viewModel.onCircleClick() }
+        buttonSquare.setOnClickListener { viewModel.onSquareClick() }
+        buttonTriangle.setOnClickListener { viewModel.onTriangleClick() }
 
         shapesView.clickListener = this
     }
@@ -46,7 +46,7 @@ class ShapesEditorActivity : AppCompatActivity(), ShapesView.ClickListener {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
-            R.id.undo -> viewmodel.onUndoClick()
+            R.id.undo -> viewModel.onUndoClick()
             R.id.statistics -> startActivity(StatisticsActivity.createIntent(this))
         }
         return true
@@ -60,7 +60,7 @@ class ShapesEditorActivity : AppCompatActivity(), ShapesView.ClickListener {
             .inject(this)
 
     private fun observeLiveData() {
-        viewmodel.shapesLiveData.observe(this, Observer { handleScreenState(it) })
+        viewModel.shapesLiveData.observe(this, Observer { handleScreenState(it) })
     }
 
     private fun handleScreenState(it: List<ShapeDomainEntity>) {
@@ -68,5 +68,5 @@ class ShapesEditorActivity : AppCompatActivity(), ShapesView.ClickListener {
     }
 
     override fun onGridItemClick(shapeDomainEntity: ShapeDomainEntity) =
-        viewmodel.onShapeClick(shapeDomainEntity)
+        viewModel.onShapeClick(shapeDomainEntity)
 }
