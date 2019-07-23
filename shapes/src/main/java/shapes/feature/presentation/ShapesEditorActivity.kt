@@ -47,6 +47,7 @@ class ShapesEditorActivity : AppCompatActivity(), ShapesView.ClickListener {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.undo -> viewmodel.onUndoClick()
+            R.id.statistics -> startActivity(StatisticsActivity.createIntent(this))
         }
         return true
     }

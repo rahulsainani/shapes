@@ -10,5 +10,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name="shapes.feature.presentation.StatisticsActivity"
+            android:label="@string/statistics"
+            />
     </application>
 </manifest>

@@ -8,4 +8,10 @@
         android:title="@string/undo"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/statistics"
+        android:icon="@drawable/ic_stat"
+        android:title="@string/statistics"
+        app:showAsAction="ifRoom" />
+
 </menu>
