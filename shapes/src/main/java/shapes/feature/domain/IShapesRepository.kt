@@ -5,9 +5,11 @@ import io.reactivex.Flowable
 
 interface IShapesRepository {
 
-    fun getAllShapes(): Flowable<ShapeEntityList>
+    fun getAllShapes(): Flowable<ShapeDomainEntityList>
 
-    fun addShape(shapeEntity: ShapeEntity): Completable
+    fun addShape(shapeType: ShapeDomainEntity.Type, id: Int): Completable
 
-    fun deleteShape(shapeEntity: ShapeEntity): Completable
+    fun updateShape(shapeDomainEntity: ShapeDomainEntity): Completable
+
+//    fun deleteShape(shapeEntity: ShapeEntity): Completable
 }

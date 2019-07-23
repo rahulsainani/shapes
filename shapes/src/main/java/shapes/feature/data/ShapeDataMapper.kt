@@ -1,25 +1,22 @@
 package shapes.feature.data
 
-import io.reactivex.functions.Function
 import shapes.base.database.ShapeDataEntity
 import shapes.base.database.ShapeDataEntity.ShapeType
-import shapes.feature.domain.ShapeEntity
+import shapes.feature.domain.ShapeDomainEntity
 import javax.inject.Inject
 
-class ShapeDataMapper @Inject constructor() : Function<ShapeEntity, ShapeDataEntity> {
+class ShapeDataMapper @Inject constructor() {
 
-    override fun apply(entity: ShapeEntity): ShapeDataEntity {
-        val type = when (entity) {
-            is ShapeEntity.Circle -> ShapeType.CIRCLE
-            is ShapeEntity.Square -> ShapeType.SQUARE
-            is ShapeEntity.Triangle -> ShapeType.TRIANGLE
+    fun apply(shapeType: ShapeDomainEntity.Type, id: Int): ShapeDataEntity {
+        val type = when (shapeType) {
+            ShapeDomainEntity.Type.CIRCLE -> ShapeType.CIRCLE
+            ShapeDomainEntity.Type.SQUARE -> ShapeType.SQUARE
+            ShapeDomainEntity.Type.TRIANGLE -> ShapeType.TRIANGLE
         }
 
         return ShapeDataEntity(
-            id = entity.id,
-            type = type,
-            centerX = entity.center.first,
-            centerY = entity.center.second
+            id = id,
+            type = type
         )
     }
 }
