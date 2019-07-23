@@ -41,6 +41,14 @@ class ShapesRepository @Inject constructor(
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.computation())
 
+    override fun delete(shapeDomainEntity: ShapeDomainEntity): Completable =
+        addStateToStackAndThen {
+            shapesDao
+                .delete(shapeDataMapper.apply(shapeDomainEntity.type, shapeDomainEntity.id))
+        }
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.computation())
+
     override fun undo(): Completable =
         stack.pop()?.let {
             deleteAll()

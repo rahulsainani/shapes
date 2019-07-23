@@ -11,6 +11,7 @@ class ShapesEditorViewModel @Inject constructor(
     private val retrieveShapes: RetrieveShapes,
     private val addShape: AddShape,
     private val switchShape: SwitchShape,
+    private val deleteShape: DeleteShape,
     private val undoLastAction: UndoLastAction
 ) : BaseViewModel() {
 
@@ -34,6 +35,16 @@ class ShapesEditorViewModel @Inject constructor(
                 { Timber.e(it, "Error updating shape") }
             )
             .addToCompositeDisposable()
+
+    internal fun onShapeLongClick(shapeDomainEntity: ShapeDomainEntity) {
+        deleteShape
+            .delete(shapeDomainEntity)
+            .subscribe(
+                { Timber.d("Shape deleted successfully") },
+                { Timber.e(it, "Error deleting shape") }
+            )
+            .addToCompositeDisposable()
+    }
 
     internal fun onUndoClick() {
         undoLastAction

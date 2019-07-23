@@ -12,7 +12,6 @@ import shapes.feature.domain.GridConstants
 import shapes.feature.domain.ShapeDomainEntity
 import kotlin.math.min
 
-
 class ShapesView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
@@ -48,6 +47,12 @@ class ShapesView @JvmOverloads constructor(
 
         setOnClickListener {
             getClickedItem()?.let { clickListener?.onGridItemClick(it) }
+        }
+
+        setOnLongClickListener {
+            getClickedItem()?.let {
+                clickListener?.onGridItemLongClick(it)
+            } ?: false
         }
     }
 
@@ -167,6 +172,8 @@ class ShapesView @JvmOverloads constructor(
 
     interface ClickListener {
         fun onGridItemClick(shapeDomainEntity: ShapeDomainEntity)
+
+        fun onGridItemLongClick(shapeDomainEntity: ShapeDomainEntity): Boolean
     }
 
     companion object {

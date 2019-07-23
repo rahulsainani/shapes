@@ -71,4 +71,9 @@ class ShapesEditorActivity : AppCompatActivity(),
 
     override fun onGridItemClick(shapeDomainEntity: ShapeDomainEntity) =
         viewModel.onShapeClick(shapeDomainEntity)
+
+    override fun onGridItemLongClick(shapeDomainEntity: ShapeDomainEntity): Boolean {
+        viewModel.onShapeLongClick(shapeDomainEntity)
+        return true
+    }
 }
