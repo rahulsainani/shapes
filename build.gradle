@@ -98,14 +98,6 @@ subprojects {
                     versionCode config.versionCode
                     versionName config.versionName
                     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-                    javaCompileOptions {
-                        annotationProcessorOptions {
-                            arguments = [
-                                    "dagger.gradle.incremental": "true",
-                                    "room.incremental"         : "true"
-                            ]
-                        }
-                    }
                 }
                 buildTypes {
                     release {
