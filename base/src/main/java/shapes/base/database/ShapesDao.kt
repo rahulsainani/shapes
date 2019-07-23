@@ -1,9 +1,6 @@
 package shapes.base.database
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import io.reactivex.Completable
 import io.reactivex.Flowable
 
@@ -15,6 +12,9 @@ interface ShapesDao {
 
     @Insert
     fun insert(shapeDataEntity: ShapeDataEntity): Completable
+
+    @Update
+    fun update(shapeDataEntity: ShapeDataEntity): Completable
 
     @Delete
     fun delete(shapeDataEntity: ShapeDataEntity): Completable
