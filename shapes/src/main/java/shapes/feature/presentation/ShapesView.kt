@@ -2,6 +2,7 @@ package shapes.feature.presentation
 
 import android.content.Context
 import android.graphics.Canvas
+import android.graphics.Color.*
 import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
@@ -16,7 +17,16 @@ class ShapesView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
-    private val paint: Paint = Paint()
+    private val circlePaint: Paint = Paint().apply {
+        color = BLUE
+    }
+    private val squarePaint: Paint = Paint().apply {
+        color = GREEN
+    }
+    private val trianglePaint: Paint = Paint().apply {
+        color = RED
+        strokeWidth = 10f
+    }
     private val path = Path()
     private val lastTouchDownXY = FloatArray(2)
     internal var clickListener: ClickListener? = null
@@ -94,7 +104,7 @@ class ShapesView @JvmOverloads constructor(
     }
 
     private fun drawCircle(canvas: Canvas, cx: Float, cy: Float, radius: Float) {
-        canvas.drawCircle(cx, cy, radius, paint)
+        canvas.drawCircle(cx, cy, radius, circlePaint)
     }
 
     private fun drawSquare(canvas: Canvas, cx: Float, cy: Float, radius: Float) {
@@ -103,7 +113,7 @@ class ShapesView @JvmOverloads constructor(
         val right = cx + radius
         val bottom = cy + radius
 
-        canvas.drawRect(left, top, right, bottom, paint)
+        canvas.drawRect(left, top, right, bottom, squarePaint)
     }
 
     @Suppress("UnnecessaryVariable")
@@ -125,11 +135,11 @@ class ShapesView @JvmOverloads constructor(
             path.lineTo(topX, topY)
             path.close()
 
-            canvas.drawPath(path, paint)
+            canvas.drawPath(path, trianglePaint)
         } else {
-            canvas.drawLine(topX, topY, rightX, rightY, paint)
-            canvas.drawLine(rightX, rightY, leftX, leftY, paint)
-            canvas.drawLine(leftX, leftY, topX, topY, paint)
+            canvas.drawLine(topX, topY, rightX, rightY, trianglePaint)
+            canvas.drawLine(rightX, rightY, leftX, leftY, trianglePaint)
+            canvas.drawLine(leftX, leftY, topX, topY, trianglePaint)
         }
     }
 
