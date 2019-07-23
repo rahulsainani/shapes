@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import shapes.base.presentation.BaseViewModel
 import shapes.feature.domain.*
 import timber.log.Timber
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class ShapesEditorViewModel @Inject constructor(
@@ -57,6 +58,7 @@ class ShapesEditorViewModel @Inject constructor(
         retrieveShapes
             .retrieveShapes()
             .map { it.shapes }
+            .throttleLast(50, TimeUnit.MILLISECONDS)
             .subscribe(
                 {
                     Timber.d("Shapes: $it")
