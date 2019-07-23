@@ -4,8 +4,15 @@ import io.reactivex.Completable
 import javax.inject.Inject
 
 class AddShape @Inject constructor(
-    private val repository: IShapesRepository
+    private val repository: IShapesRepository,
+    private val randomGridPositionGenerator: RandomGridPositionGenerator
 ) {
 
-    fun addShape(shapeEntity: ShapeEntity): Completable = repository.addShape(shapeEntity)
+    fun addShape(shapeType: ShapeDomainEntity.Type): Completable =
+        repository
+            .getAllShapes()
+            .firstOrError()
+            .map { it.shapes.map { item -> item.id } }
+            .map { randomGridPositionGenerator.generate(it) }
+            .flatMapCompletable { repository.addShape(shapeType, it) }
 }
