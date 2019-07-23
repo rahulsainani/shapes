@@ -14,6 +14,7 @@ class ShapesRepository @Inject constructor(
     private val shapesDao: ShapesDao,
     private val shapesListDomainMapper: ShapesListDomainMapper,
     private val shapeDataMapper: ShapeDataMapper,
+    private val shapeTypeDataMapper: ShapeTypeDataMapper,
     private val stack: Stack
 ) : IShapesRepository {
 
@@ -45,6 +46,13 @@ class ShapesRepository @Inject constructor(
         addStateToStackAndThen {
             shapesDao
                 .delete(shapeDataMapper.apply(shapeDomainEntity.type, shapeDomainEntity.id))
+        }
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.computation())
+
+    override fun deleteAllShapesByType(shapeType: ShapeDomainEntity.Type): Completable =
+        addStateToStackAndThen {
+            shapesDao.deleteAllShapesByType(shapeTypeDataMapper.apply(shapeType))
         }
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.computation())

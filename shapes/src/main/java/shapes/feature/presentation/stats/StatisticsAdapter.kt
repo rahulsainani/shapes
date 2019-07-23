@@ -40,6 +40,6 @@ class StatisticsAdapter(
     }
 
     interface ClickListener {
-        fun onItemClick(article: StatisticsItemEntity)
+        fun onItemClick(statisticsItemEntity: StatisticsItemEntity)
     }
 }

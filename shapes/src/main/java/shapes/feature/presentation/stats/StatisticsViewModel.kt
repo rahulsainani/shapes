@@ -2,12 +2,15 @@ package shapes.feature.presentation.stats
 
 import androidx.lifecycle.MutableLiveData
 import shapes.base.presentation.BaseViewModel
+import shapes.feature.domain.DeleteAllShapesByType
 import shapes.feature.domain.RetrieveShapes
+import shapes.feature.domain.ShapeDomainEntity
 import timber.log.Timber
 import javax.inject.Inject
 
 class StatisticsViewModel @Inject constructor(
     private val retrieveShapes: RetrieveShapes,
+    private val deleteAllShapesByType: DeleteAllShapesByType,
     private val statisticsViewEntityMapper: StatisticsViewEntityMapper
 ) : BaseViewModel() {
 
@@ -17,10 +20,19 @@ class StatisticsViewModel @Inject constructor(
         processShapesStream()
     }
 
+    internal fun onItemClick(shapeType: ShapeDomainEntity.Type) {
+        deleteAllShapesByType
+            .delete(shapeType)
+            .subscribe(
+                { Timber.e("All shapes of type deleted successfully") },
+                { Timber.e(it, "Error deleting shapes of type") }
+            )
+            .addToCompositeDisposable()
+    }
+
     private fun processShapesStream() =
         retrieveShapes
             .retrieveShapes()
-            .firstOrError()
             .map(statisticsViewEntityMapper)
             .subscribe(
                 { statsListLiveData.postValue(it) },

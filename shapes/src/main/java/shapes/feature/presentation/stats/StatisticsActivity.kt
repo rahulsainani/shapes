@@ -53,8 +53,8 @@ class StatisticsActivity : AppCompatActivity(),
     private fun handleScreenState(list: List<StatisticsItemEntity>) =
         adapter.submitList(list)
 
-    override fun onItemClick(article: StatisticsItemEntity) {
-        //TODO delete all shapes of this category
+    override fun onItemClick(statisticsItemEntity: StatisticsItemEntity) {
+        viewModel.onItemClick(statisticsItemEntity.shapeType)
     }
 
     companion object {

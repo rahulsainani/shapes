@@ -26,6 +26,9 @@ interface ShapesDao {
     @Delete
     fun delete(shapeDataEntity: ShapeDataEntity): Completable
 
+    @Query("DELETE FROM shapes WHERE type = :shapeType")
+    fun deleteAllShapesByType(shapeType: ShapeDataEntity.ShapeType): Completable
+
     @Query("DELETE FROM shapes")
     fun deleteAll(): Completable
 }

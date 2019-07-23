@@ -27,7 +27,8 @@ class StatisticsViewEntityMapper @Inject constructor(
 
         return StatisticsItemEntity(
             shapeName,
-            entry.value.size.toString()
+            entry.value.size.toString(),
+            entry.key
         )
     }
 }
