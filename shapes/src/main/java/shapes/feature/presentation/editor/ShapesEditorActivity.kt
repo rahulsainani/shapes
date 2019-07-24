@@ -62,11 +62,11 @@ class ShapesEditorActivity : AppCompatActivity(),
             .inject(this)
 
     private fun observeLiveData() {
-        viewModel.shapesLiveData.observe(this, Observer { handleScreenState(it) })
+        viewModel.shapesLiveData.observe(this, Observer { displayShapes(it) })
     }
 
-    private fun handleScreenState(it: List<ShapeDomainEntity>) {
-        shapesView.shapes = it
+    private fun displayShapes(shapesList: List<ShapeDomainEntity>) {
+        shapesView.shapes = shapesList
     }
 
     override fun onGridItemClick(shapeDomainEntity: ShapeDomainEntity) =

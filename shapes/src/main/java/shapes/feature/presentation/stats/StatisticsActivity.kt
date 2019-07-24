@@ -47,10 +47,10 @@ class StatisticsActivity : AppCompatActivity(),
             .inject(this)
 
     private fun observeLiveData() {
-        viewModel.statsListLiveData.observe(this, Observer { handleScreenState(it) })
+        viewModel.statsListLiveData.observe(this, Observer { displayStats(it) })
     }
 
-    private fun handleScreenState(list: List<StatisticsItemEntity>) =
+    private fun displayStats(list: List<StatisticsItemEntity>) =
         adapter.submitList(list)
 
     override fun onItemClick(statisticsItemEntity: StatisticsItemEntity) {
