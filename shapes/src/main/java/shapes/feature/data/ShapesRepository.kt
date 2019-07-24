@@ -29,15 +29,15 @@ class ShapesRepository @Inject constructor(
             .observeOn(Schedulers.computation())
             .map(shapesListDomainMapper)
 
-    override fun addShape(shapeType: ShapeDomainEntity.Type, id: Int): Completable =
-        addStateToStackAndThen { shapesDao.insert(shapeDataMapper.apply(shapeType, id)) }
+    override fun addShape(shapeDomainEntity: ShapeDomainEntity): Completable =
+        addStateToStackAndThen { shapesDao.insert(shapeDataMapper.apply(shapeDomainEntity)) }
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.computation())
 
     override fun updateShape(shapeDomainEntity: ShapeDomainEntity): Completable =
         addStateToStackAndThen {
             shapesDao
-                .update(shapeDataMapper.apply(shapeDomainEntity.type, shapeDomainEntity.id))
+                .update(shapeDataMapper.apply(shapeDomainEntity))
         }
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.computation())
@@ -45,7 +45,7 @@ class ShapesRepository @Inject constructor(
     override fun delete(shapeDomainEntity: ShapeDomainEntity): Completable =
         addStateToStackAndThen {
             shapesDao
-                .delete(shapeDataMapper.apply(shapeDomainEntity.type, shapeDomainEntity.id))
+                .delete(shapeDataMapper.apply(shapeDomainEntity))
         }
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.computation())

@@ -14,5 +14,6 @@ class AddShape @Inject constructor(
             .firstOrError()
             .map { it.map { item -> item.id } }
             .map { randomGridPositionGenerator.generate(it) }
-            .flatMapCompletable { repository.addShape(shapeType, it) }
+            .map { ShapeDomainEntity(it, shapeType) }
+            .flatMapCompletable { repository.addShape(it) }
 }

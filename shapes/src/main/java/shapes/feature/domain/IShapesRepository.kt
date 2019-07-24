@@ -7,7 +7,7 @@ interface IShapesRepository {
 
     fun getAllShapes(): Flowable<List<ShapeDomainEntity>>
 
-    fun addShape(shapeType: ShapeDomainEntity.Type, id: Int): Completable
+    fun addShape(shapeDomainEntity: ShapeDomainEntity): Completable
 
     fun updateShape(shapeDomainEntity: ShapeDomainEntity): Completable
 
