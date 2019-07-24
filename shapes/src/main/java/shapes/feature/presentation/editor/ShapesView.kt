@@ -56,9 +56,9 @@ class ShapesView @JvmOverloads constructor(
         }
     }
 
-    override fun onDraw(canvas: Canvas?) {
+    override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        shapes.onEach { drawShape(it, canvas!!) }
+        shapes.onEach { drawShape(it, canvas) }
     }
 
     private fun drawShape(shape: ShapeDomainEntity, canvas: Canvas) {

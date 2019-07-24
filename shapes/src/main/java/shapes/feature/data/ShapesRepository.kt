@@ -18,10 +18,6 @@ class ShapesRepository @Inject constructor(
     private val stack: Stack
 ) : IShapesRepository {
 
-    init {
-        Timber.d("repo created")
-    }
-
     override fun getAllShapes(): Flowable<List<ShapeDomainEntity>> =
         shapesDao
             .getAllShapes()
@@ -77,5 +73,5 @@ class ShapesRepository @Inject constructor(
             .getAllShapesSingle()
             .doOnSuccess { stack.push(it) }
             .ignoreElement()
-            .andThen(func.invoke())
+            .andThen(func())
 }
