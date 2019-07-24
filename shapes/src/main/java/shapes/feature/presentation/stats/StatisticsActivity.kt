@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_statistics.*
 import shapes.base.di.AppComponentInjectHelper
 import shapes.feature.R
+import shapes.feature.di.editor.ShapesModule
 import shapes.feature.di.stats.DaggerStatisticsComponent
-import shapes.feature.di.stats.StatisticsModule
 import javax.inject.Inject
 
 class StatisticsActivity : AppCompatActivity(),
@@ -42,7 +42,7 @@ class StatisticsActivity : AppCompatActivity(),
     private fun inject() =
         DaggerStatisticsComponent.builder()
             .applicationComponent(AppComponentInjectHelper.provideAppComponent(applicationContext))
-            .statisticsModule(StatisticsModule())
+            .shapesModule(ShapesModule())
             .build()
             .inject(this)
 
