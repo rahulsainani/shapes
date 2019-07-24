@@ -7,7 +7,6 @@ import shapes.base.data.Stack
 import shapes.base.database.ShapesDao
 import shapes.feature.domain.IShapesRepository
 import shapes.feature.domain.ShapeDomainEntity
-import timber.log.Timber
 import javax.inject.Inject
 
 class ShapesRepository @Inject constructor(
