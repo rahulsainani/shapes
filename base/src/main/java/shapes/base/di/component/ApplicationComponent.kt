@@ -6,6 +6,7 @@ import shapes.base.data.Stack
 import shapes.base.database.ShapesDao
 import shapes.base.di.ApplicationContext
 import shapes.base.di.module.ApplicationModule
+import shapes.base.rx.SchedulerProvider
 import javax.inject.Singleton
 
 @Singleton
@@ -17,4 +18,5 @@ interface ApplicationComponent {
 
     fun shapesDao(): ShapesDao
     fun stack(): Stack
+    fun schedulerProvider(): SchedulerProvider
 }
