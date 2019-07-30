@@ -18,6 +18,7 @@ dependencies {
     implementation config.dependencies.recyclerView
 
     // Testing
+    testImplementation project(':test-core')
     testImplementation config.dependencies.jUnitJupiter
     testImplementation config.dependencies.mockitoKotlin
     testImplementation config.dependencies.mockitoInline

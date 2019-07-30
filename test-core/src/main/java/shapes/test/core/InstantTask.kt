@@ -1,4 +1,4 @@
-package shapes.feature.core
+package shapes.test.core
 
 import org.junit.jupiter.api.extension.ExtendWith
 import javax.inject.Qualifier

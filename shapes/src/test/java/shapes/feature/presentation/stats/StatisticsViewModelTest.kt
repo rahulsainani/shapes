@@ -10,10 +10,10 @@ import io.reactivex.subjects.BehaviorSubject
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import shapes.feature.core.InstantTask
 import shapes.feature.domain.DeleteAllShapesByType
 import shapes.feature.domain.RetrieveShapes
 import shapes.feature.domain.ShapeDomainEntity
+import shapes.test.core.InstantTask
 
 @InstantTask
 internal class StatisticsViewModelTest {

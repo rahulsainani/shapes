@@ -1,4 +1,4 @@
-package shapes.feature.core
+package shapes.test.core
 
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
@@ -13,5 +13,4 @@ class RxPluginsExtension : BeforeAllCallback {
         RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
         RxJavaPlugins.setSingleSchedulerHandler { Schedulers.trampoline() }
     }
-
 }

@@ -13,8 +13,8 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import shapes.base.rx.SchedulerProvider
 import shapes.feature.TestObject
-import shapes.feature.core.InstantTask
 import shapes.feature.domain.*
+import shapes.test.core.InstantTask
 import java.util.concurrent.TimeUnit
 
 @InstantTask

@@ -1,4 +1,6 @@
-rootProject.name='Shapes'
+rootProject.name = 'Shapes'
 
-include ':app', ':shapes'
+include ':app'
 include ':base'
+include ':test-core'
+include ':shapes'

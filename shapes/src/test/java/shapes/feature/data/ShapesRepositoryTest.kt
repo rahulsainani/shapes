@@ -13,7 +13,7 @@ import shapes.base.data.Stack
 import shapes.base.database.ShapeDataEntity
 import shapes.base.database.ShapesDao
 import shapes.feature.TestObject
-import shapes.feature.core.RxPlugins
+import shapes.test.core.RxPlugins
 
 @RxPlugins
 internal class ShapesRepositoryTest {
