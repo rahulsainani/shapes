@@ -8,7 +8,9 @@ import io.reactivex.Completable
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import shapes.feature.TestObject.shapeDomainEntity
-import shapes.feature.domain.ShapeDomainEntity.Type.*
+import shapes.feature.domain.ShapeDomainEntity.Type.CIRCLE
+import shapes.feature.domain.ShapeDomainEntity.Type.SQUARE
+import shapes.feature.domain.ShapeDomainEntity.Type.TRIANGLE
 
 internal class SwitchShapeTest {
 

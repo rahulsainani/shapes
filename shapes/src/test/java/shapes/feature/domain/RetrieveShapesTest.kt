@@ -17,7 +17,8 @@ internal class RetrieveShapesTest {
     @Test
     fun `should call get all shapes on repository`() {
         val mock = mock<List<ShapeDomainEntity>>()
-        whenever(repository.getAllShapes()).thenReturn(shapesSteam.toFlowable(BackpressureStrategy.LATEST))
+        whenever(repository.getAllShapes())
+            .thenReturn(shapesSteam.toFlowable(BackpressureStrategy.LATEST))
 
         shapesSteam.onNext(mock)
 

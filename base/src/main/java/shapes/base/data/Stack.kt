@@ -1,9 +1,9 @@
 package shapes.base.data
 
-import shapes.base.database.ShapeDataEntity
-import java.util.*
+import java.util.ArrayDeque
 import javax.inject.Inject
 import javax.inject.Singleton
+import shapes.base.database.ShapeDataEntity
 
 @Singleton
 class Stack @Inject constructor() {

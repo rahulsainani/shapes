@@ -1,7 +1,7 @@
 package shapes.feature.domain
 
-import shapes.feature.domain.GridConstants.GRID_SIZE
 import javax.inject.Inject
+import shapes.feature.domain.GridConstants.GRID_SIZE
 
 class RandomGridPositionGenerator @Inject constructor() {
 

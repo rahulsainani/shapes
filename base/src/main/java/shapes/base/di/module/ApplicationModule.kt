@@ -5,11 +5,11 @@ import android.content.Context
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
+import javax.inject.Singleton
 import shapes.base.database.AppDatabase
 import shapes.base.database.ShapesDao
 import shapes.base.database.ShapesDao_Impl
 import shapes.base.di.ApplicationContext
-import javax.inject.Singleton
 
 @Module
 class ApplicationModule(private val application: Application) {

@@ -64,11 +64,15 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$agpVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jlleitschuh.gradle:ktlint-gradle:8.2.0"
     }
 }
 
@@ -87,6 +91,13 @@ task clean(type: Delete) {
 def config = rootProject.extensions.getByName("ext")
 
 subprojects {
+    apply plugin: "org.jlleitschuh.gradle.ktlint" // Version should be inherited from parent
+    ktlint {
+        version = "0.34.2"
+        debug = true
+        android = true
+    }
+
     afterEvaluate { project ->
         if (project.hasProperty('android')) {
             android {

@@ -42,7 +42,8 @@ internal class ShapesRepositoryTest {
         val shapeDataEntity = TestObject.shapeDataEntity()
         val shapeDataEntityList = listOf(shapeDataEntity)
 
-        whenever(shapesDao.getAllShapes()).thenReturn(stream.toFlowable(BackpressureStrategy.LATEST))
+        whenever(shapesDao.getAllShapes())
+            .thenReturn(stream.toFlowable(BackpressureStrategy.LATEST))
         whenever(shapesListDomainMapper.apply(shapeDataEntityList)).thenReturn(shapeDomainList)
 
         stream.onNext(shapeDataEntityList)
@@ -165,5 +166,4 @@ internal class ShapesRepositoryTest {
 
         verify(shapesDao).insertAll(topOfTheStack)
     }
-
 }

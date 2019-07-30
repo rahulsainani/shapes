@@ -8,14 +8,19 @@ import io.reactivex.BackpressureStrategy
 import io.reactivex.Completable
 import io.reactivex.schedulers.TestScheduler
 import io.reactivex.subjects.BehaviorSubject
+import java.util.concurrent.TimeUnit
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import shapes.base.rx.SchedulerProvider
 import shapes.feature.TestObject
-import shapes.feature.domain.*
+import shapes.feature.domain.AddShape
+import shapes.feature.domain.DeleteShape
+import shapes.feature.domain.RetrieveShapes
+import shapes.feature.domain.ShapeDomainEntity
+import shapes.feature.domain.SwitchShape
+import shapes.feature.domain.UndoLastAction
 import shapes.test.core.InstantTask
-import java.util.concurrent.TimeUnit
 
 @InstantTask
 internal class ShapesEditorViewModelTest {

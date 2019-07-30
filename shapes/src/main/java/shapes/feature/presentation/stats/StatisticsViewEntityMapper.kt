@@ -1,11 +1,11 @@
 package shapes.feature.presentation.stats
 
 import io.reactivex.functions.Function
+import javax.inject.Inject
 import shapes.base.presentation.StringsProvider
 import shapes.feature.R
 import shapes.feature.domain.ShapeDomainEntity
 import shapes.feature.domain.ShapeDomainEntity.Type
-import javax.inject.Inject
 
 class StatisticsViewEntityMapper @Inject constructor(
     private val stringsProvider: StringsProvider
@@ -18,7 +18,10 @@ class StatisticsViewEntityMapper @Inject constructor(
             .map { entry -> mapToStatisticsItemEntity(entry) }
     }
 
-    private fun mapToStatisticsItemEntity(entry: Map.Entry<Type, List<ShapeDomainEntity>>): StatisticsItemEntity {
+    private fun mapToStatisticsItemEntity(
+        entry: Map.Entry<Type, List<ShapeDomainEntity>>
+    ): StatisticsItemEntity {
+
         val shapeName = when (entry.key) {
             Type.SQUARE -> stringsProvider.getString(R.string.square)
             Type.CIRCLE -> stringsProvider.getString(R.string.circle)

@@ -2,18 +2,22 @@ package shapes.feature.presentation.editor
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color.*
+import android.graphics.Color.BLUE
+import android.graphics.Color.GREEN
+import android.graphics.Color.RED
 import android.graphics.Paint
 import android.graphics.Path
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
+import kotlin.math.min
 import shapes.feature.domain.GridConstants
 import shapes.feature.domain.ShapeDomainEntity
-import kotlin.math.min
 
 class ShapesView @JvmOverloads constructor(
-    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
     private val circlePaint: Paint = Paint().apply {
@@ -160,7 +164,9 @@ class ShapesView @JvmOverloads constructor(
                 clickedItemXPosition = i
             }
 
-            if (lastTouchDownXY[1] > (i - 1) * gridHeight && lastTouchDownXY[1] < (i) * gridHeight) {
+            if (lastTouchDownXY[1] > (i - 1) * gridHeight &&
+                lastTouchDownXY[1] < (i) * gridHeight
+            ) {
                 clickedItemYPosition = i
             }
         }

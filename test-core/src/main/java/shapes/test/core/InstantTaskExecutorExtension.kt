@@ -18,7 +18,6 @@ class InstantTaskExecutorExtension : BeforeEachCallback, AfterEachCallback {
             override fun isMainThread(): Boolean = true
 
             override fun postToMainThread(runnable: Runnable) = runnable.run()
-
         })
     }
 

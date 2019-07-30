@@ -9,7 +9,11 @@ import shapes.feature.presentation.stats.StatisticsActivity
 
 @PerActivity
 @Component(
-    modules = [ShapesModule::class, ViewModelFactoryModule::class, StatisticsViewModelModule::class],
+    modules = [
+        ShapesModule::class,
+        ViewModelFactoryModule::class,
+        StatisticsViewModelModule::class
+    ],
     dependencies = [ApplicationComponent::class]
 )
 interface StatisticsComponent {

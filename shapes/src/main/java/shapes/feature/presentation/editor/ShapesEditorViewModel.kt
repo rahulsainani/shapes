@@ -1,12 +1,17 @@
 package shapes.feature.presentation.editor
 
 import androidx.lifecycle.MutableLiveData
-import shapes.base.presentation.BaseViewModel
-import shapes.base.rx.SchedulerProvider
-import shapes.feature.domain.*
-import timber.log.Timber
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
+import shapes.base.presentation.BaseViewModel
+import shapes.base.rx.SchedulerProvider
+import shapes.feature.domain.AddShape
+import shapes.feature.domain.DeleteShape
+import shapes.feature.domain.RetrieveShapes
+import shapes.feature.domain.ShapeDomainEntity
+import shapes.feature.domain.SwitchShape
+import shapes.feature.domain.UndoLastAction
+import timber.log.Timber
 
 class ShapesEditorViewModel @Inject constructor(
     private val retrieveShapes: RetrieveShapes,

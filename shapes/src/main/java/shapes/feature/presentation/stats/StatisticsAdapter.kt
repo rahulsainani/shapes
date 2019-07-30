@@ -35,7 +35,6 @@ class StatisticsAdapter(
 
                 setOnClickListener { listener.onItemClick(entity) }
             }
-
         }
     }
 

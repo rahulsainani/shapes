@@ -1,12 +1,12 @@
 package shapes.feature.presentation.stats
 
 import androidx.lifecycle.MutableLiveData
+import javax.inject.Inject
 import shapes.base.presentation.BaseViewModel
 import shapes.feature.domain.DeleteAllShapesByType
 import shapes.feature.domain.RetrieveShapes
 import shapes.feature.domain.ShapeDomainEntity
 import timber.log.Timber
-import javax.inject.Inject
 
 class StatisticsViewModel @Inject constructor(
     private val retrieveShapes: RetrieveShapes,

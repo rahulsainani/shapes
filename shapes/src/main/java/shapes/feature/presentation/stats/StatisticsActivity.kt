@@ -8,12 +8,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_statistics.*
 import shapes.base.di.AppComponentInjectHelper
 import shapes.feature.R
 import shapes.feature.di.editor.ShapesModule
 import shapes.feature.di.stats.DaggerStatisticsComponent
-import javax.inject.Inject
 
 class StatisticsActivity : AppCompatActivity(),
     StatisticsAdapter.ClickListener {
