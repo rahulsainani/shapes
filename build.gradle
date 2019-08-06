@@ -14,6 +14,7 @@ ext {
             recyclerview    : "1.0.0",
             constraintLayout: "1.1.3",
             lifecycle       : "2.0.0",
+            lottie          : "2.8.0",
 
             room            : "2.2.0-alpha01",
             rxjava          : "2.2.9",
@@ -38,6 +39,7 @@ ext {
             viewmodel       : "androidx.lifecycle:lifecycle-viewmodel:${versions.lifecycle}",
             common          : "androidx.lifecycle:lifecycle-common:${versions.lifecycle}",
             extensions      : "androidx.lifecycle:lifecycle-extensions:${versions.lifecycle}",
+            lottie          : "com.airbnb.android:lottie:${versions.lottie}",
 
             room            : "androidx.room:room-runtime:${versions.room}",
             roomCompiler    : "androidx.room:room-compiler:${versions.room}",

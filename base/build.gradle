@@ -18,6 +18,9 @@ dependencies {
     api config.dependencies.extensions
     api config.dependencies.material
 
+    // UI
+    api config.dependencies.lottie
+
     // Room
     api config.dependencies.room
     api config.dependencies.roomRx
