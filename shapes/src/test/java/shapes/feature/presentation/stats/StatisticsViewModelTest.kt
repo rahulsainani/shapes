@@ -7,7 +7,7 @@ import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Completable
 import io.reactivex.subjects.BehaviorSubject
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import shapes.feature.domain.DeleteAllShapesByType
@@ -27,7 +27,6 @@ internal class StatisticsViewModelTest {
     private lateinit var tested: StatisticsViewModel
 
     private val shapesList = mock<List<ShapeDomainEntity>>()
-    private val statItemEntities = mock<List<StatisticsItemEntity>>()
 
     @BeforeEach
     fun setup() {
@@ -41,11 +40,25 @@ internal class StatisticsViewModelTest {
 
     @Test
     fun `number of shapes is posted on live data`() {
+        val statItemEntities = listOf<StatisticsItemEntity>(mock(), mock())
         whenever(statisticsViewEntityMapper.apply(shapesList)).thenReturn(statItemEntities)
 
         shapesSteam.onNext(shapesList)
 
-        Assertions.assertEquals(statItemEntities, tested.statsListLiveData.value)
+        assertEquals(
+            StatisticsViewState.Content(statItemEntities),
+            tested.statsViewStateLiveData.value
+        )
+    }
+
+    @Test
+    fun `empty is posted on live data`() {
+        val statItemEntities = emptyList<StatisticsItemEntity>()
+        whenever(statisticsViewEntityMapper.apply(shapesList)).thenReturn(statItemEntities)
+
+        shapesSteam.onNext(shapesList)
+
+        assertEquals(StatisticsViewState.Empty, tested.statsViewStateLiveData.value)
     }
 
     @Test

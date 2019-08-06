@@ -8,15 +8,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_statistics.*
 import shapes.base.di.AppComponentInjectHelper
+import shapes.base.presentation.toGone
+import shapes.base.presentation.toVisible
 import shapes.feature.R
 import shapes.feature.di.editor.ShapesModule
 import shapes.feature.di.stats.DaggerStatisticsComponent
+import javax.inject.Inject
 
-class StatisticsActivity : AppCompatActivity(),
-    StatisticsAdapter.ClickListener {
+class StatisticsActivity : AppCompatActivity(), StatisticsAdapter.ClickListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -33,8 +34,8 @@ class StatisticsActivity : AppCompatActivity(),
         viewModel =
             ViewModelProviders.of(this, viewModelFactory)[StatisticsViewModel::class.java]
 
-        articles_recyclerview.layoutManager = LinearLayoutManager(this)
-        articles_recyclerview.adapter = adapter
+        recyclerStats.layoutManager = LinearLayoutManager(this)
+        recyclerStats.adapter = adapter
 
         observeLiveData()
     }
@@ -47,11 +48,24 @@ class StatisticsActivity : AppCompatActivity(),
             .inject(this)
 
     private fun observeLiveData() {
-        viewModel.statsListLiveData.observe(this, Observer { displayStats(it) })
+        viewModel.statsViewStateLiveData.observe(this, Observer { handleViewState(it) })
     }
 
-    private fun displayStats(list: List<StatisticsItemEntity>) =
+    private fun handleViewState(viewState: StatisticsViewState) =
+        when (viewState) {
+            is StatisticsViewState.Empty -> displayEmptyState()
+            is StatisticsViewState.Content -> displayStats(viewState.items)
+        }
+
+    private fun displayEmptyState() {
+        recyclerStats.toGone()
+        animationEmptyState.toVisible()
+    }
+
+    private fun displayStats(list: List<StatisticsItemEntity>) {
+        animationEmptyState.toGone()
         adapter.submitList(list)
+    }
 
     override fun onItemClick(statisticsItemEntity: StatisticsItemEntity) {
         viewModel.onItemClick(statisticsItemEntity.shapeType)
