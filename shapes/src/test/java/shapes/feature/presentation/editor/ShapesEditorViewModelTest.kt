@@ -8,7 +8,6 @@ import io.reactivex.BackpressureStrategy
 import io.reactivex.Completable
 import io.reactivex.schedulers.TestScheduler
 import io.reactivex.subjects.BehaviorSubject
-import java.util.concurrent.TimeUnit
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -21,6 +20,7 @@ import shapes.feature.domain.ShapeDomainEntity
 import shapes.feature.domain.SwitchShape
 import shapes.feature.domain.UndoLastAction
 import shapes.test.core.InstantTask
+import java.util.concurrent.TimeUnit
 
 @InstantTask
 internal class ShapesEditorViewModelTest {
@@ -34,7 +34,6 @@ internal class ShapesEditorViewModelTest {
 
     private lateinit var tested: ShapesEditorViewModel
 
-    private val shapesList = mock<List<ShapeDomainEntity>>()
     private val shapesSteam = BehaviorSubject.create<List<ShapeDomainEntity>>()
     private val testScheduler = TestScheduler()
 
@@ -49,12 +48,23 @@ internal class ShapesEditorViewModelTest {
     }
 
     @Test
-    fun `shapes list are posted to live data`() {
+    fun `shapes list content is posted to live data`() {
+        val shapesList = listOf<ShapeDomainEntity>(mock(), mock())
         shapesSteam.onNext(shapesList)
 
         testScheduler.advanceTimeBy(50, TimeUnit.MILLISECONDS)
 
-        assertEquals(shapesList, tested.shapesLiveData.value)
+        assertEquals(ShapesEditorViewState.Content(shapesList), tested.viewStateLiveData.value)
+    }
+
+    @Test
+    fun `empty state is posted to live data`() {
+        val shapesList = emptyList<ShapeDomainEntity>()
+        shapesSteam.onNext(shapesList)
+
+        testScheduler.advanceTimeBy(50, TimeUnit.MILLISECONDS)
+
+        assertEquals(ShapesEditorViewState.Empty, tested.viewStateLiveData.value)
     }
 
     @Test

@@ -5,4 +5,5 @@
     <string name="square">Square</string>
     <string name="undo">Undo</string>
     <string name="statistics">Statistics</string>
+    <string name="shapes_editor_education">Please click on the buttons to create shapes.</string>
 </resources>

@@ -7,14 +7,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
-import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_shapes_editor.*
 import shapes.base.di.AppComponentInjectHelper
+import shapes.base.presentation.toGone
+import shapes.base.presentation.toVisible
 import shapes.feature.R
 import shapes.feature.di.editor.DaggerShapesComponent
 import shapes.feature.di.editor.ShapesModule
 import shapes.feature.domain.ShapeDomainEntity
 import shapes.feature.presentation.stats.StatisticsActivity
+import javax.inject.Inject
 
 class ShapesEditorActivity : AppCompatActivity(),
     ShapesView.ClickListener {
@@ -62,10 +64,22 @@ class ShapesEditorActivity : AppCompatActivity(),
             .inject(this)
 
     private fun observeLiveData() {
-        viewModel.shapesLiveData.observe(this, Observer { displayShapes(it) })
+        viewModel.viewStateLiveData.observe(this, Observer { handleViewState(it) })
+    }
+
+    private fun handleViewState(viewState: ShapesEditorViewState) =
+        when (viewState) {
+            is ShapesEditorViewState.Empty -> displayEmptyState()
+            is ShapesEditorViewState.Content -> displayShapes(viewState.items)
+        }
+
+    private fun displayEmptyState() {
+        textEducation.toVisible()
+        shapesView.shapes = emptyList()
     }
 
     private fun displayShapes(shapesList: List<ShapeDomainEntity>) {
+        textEducation.toGone()
         shapesView.shapes = shapesList
     }
 
