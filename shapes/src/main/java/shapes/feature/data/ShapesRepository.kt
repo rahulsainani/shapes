@@ -2,13 +2,13 @@ package shapes.feature.data
 
 import io.reactivex.Completable
 import io.reactivex.Flowable
-import javax.inject.Inject
 import shapes.base.data.Stack
 import shapes.base.database.ShapesDao
 import shapes.base.rx.CompletableNetworkTransformer
 import shapes.base.rx.FlowableNetworkTransformer
 import shapes.feature.domain.IShapesRepository
 import shapes.feature.domain.ShapeDomainEntity
+import javax.inject.Inject
 
 class ShapesRepository @Inject constructor(
     private val shapesDao: ShapesDao,
@@ -46,9 +46,8 @@ class ShapesRepository @Inject constructor(
 
     override fun undo(): Completable =
         stack.pop()?.let {
-            shapesDao
-                .deleteAll()
-                .andThen(shapesDao.insertAll(it))
+            Completable
+                .fromAction { shapesDao.deleteAndInsertInTransaction(it) }
                 .compose(CompletableNetworkTransformer())
         }
             ?: Completable.error(NoSuchElementException())

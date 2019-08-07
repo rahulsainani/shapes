@@ -6,12 +6,10 @@ import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Completable
-import io.reactivex.schedulers.TestScheduler
 import io.reactivex.subjects.BehaviorSubject
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import shapes.base.rx.SchedulerProvider
 import shapes.feature.TestObject
 import shapes.feature.domain.AddShape
 import shapes.feature.domain.DeleteShape
@@ -20,12 +18,10 @@ import shapes.feature.domain.ShapeDomainEntity
 import shapes.feature.domain.SwitchShape
 import shapes.feature.domain.UndoLastAction
 import shapes.test.core.InstantTask
-import java.util.concurrent.TimeUnit
 
 @InstantTask
 internal class ShapesEditorViewModelTest {
 
-    private val schedulerProvider: SchedulerProvider = mock()
     private val retrieveShapes: RetrieveShapes = mock()
     private val addShape: AddShape = mock()
     private val switchShape: SwitchShape = mock()
@@ -35,15 +31,13 @@ internal class ShapesEditorViewModelTest {
     private lateinit var tested: ShapesEditorViewModel
 
     private val shapesSteam = BehaviorSubject.create<List<ShapeDomainEntity>>()
-    private val testScheduler = TestScheduler()
 
     @BeforeEach
     fun setup() {
         whenever(retrieveShapes.retrieveShapes())
             .thenReturn(shapesSteam.toFlowable(BackpressureStrategy.LATEST))
-        whenever(schedulerProvider.computation()).thenReturn(testScheduler)
         tested = ShapesEditorViewModel(
-            retrieveShapes, addShape, switchShape, deleteShape, undoLastAction, schedulerProvider
+            retrieveShapes, addShape, switchShape, deleteShape, undoLastAction
         )
     }
 
@@ -52,8 +46,6 @@ internal class ShapesEditorViewModelTest {
         val shapesList = listOf<ShapeDomainEntity>(mock(), mock())
         shapesSteam.onNext(shapesList)
 
-        testScheduler.advanceTimeBy(50, TimeUnit.MILLISECONDS)
-
         assertEquals(ShapesEditorViewState.Content(shapesList), tested.viewStateLiveData.value)
     }
 
@@ -61,8 +53,6 @@ internal class ShapesEditorViewModelTest {
     fun `empty state is posted to live data`() {
         val shapesList = emptyList<ShapeDomainEntity>()
         shapesSteam.onNext(shapesList)
-
-        testScheduler.advanceTimeBy(50, TimeUnit.MILLISECONDS)
 
         assertEquals(ShapesEditorViewState.Empty, tested.viewStateLiveData.value)
     }

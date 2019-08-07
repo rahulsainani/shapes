@@ -2,6 +2,7 @@ package shapes.feature.data
 
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.never
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.BackpressureStrategy
@@ -148,15 +149,15 @@ internal class ShapesRepositoryTest {
             .test()
             .assertNoValues()
             .assertError(NoSuchElementException::class.java)
+
+        verify(shapesDao, never()).deleteAndInsertInTransaction(any())
     }
 
     @Test
     fun `should update dao with the result of stack pop on undo`() {
-        val topOfTheStack = mock<List<ShapeDataEntity>>()
+        val topOfTheStack = listOf<ShapeDataEntity>()
 
         whenever(stack.pop()).thenReturn(topOfTheStack)
-        whenever(shapesDao.deleteAll()).thenReturn(Completable.complete())
-        whenever(shapesDao.insertAll(any())).thenReturn(Completable.complete())
 
         tested
             .undo()
@@ -164,6 +165,6 @@ internal class ShapesRepositoryTest {
             .assertComplete()
             .assertNoErrors()
 
-        verify(shapesDao).insertAll(topOfTheStack)
+        verify(shapesDao).deleteAndInsertInTransaction(topOfTheStack)
     }
 }

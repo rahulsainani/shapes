@@ -2,7 +2,6 @@ package shapes.feature.presentation.editor
 
 import androidx.lifecycle.MutableLiveData
 import shapes.base.presentation.BaseViewModel
-import shapes.base.rx.SchedulerProvider
 import shapes.feature.domain.AddShape
 import shapes.feature.domain.DeleteShape
 import shapes.feature.domain.RetrieveShapes
@@ -10,7 +9,6 @@ import shapes.feature.domain.ShapeDomainEntity
 import shapes.feature.domain.SwitchShape
 import shapes.feature.domain.UndoLastAction
 import timber.log.Timber
-import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 class ShapesEditorViewModel @Inject constructor(
@@ -18,8 +16,7 @@ class ShapesEditorViewModel @Inject constructor(
     private val addShape: AddShape,
     private val switchShape: SwitchShape,
     private val deleteShape: DeleteShape,
-    private val undoLastAction: UndoLastAction,
-    private val schedulerProvider: SchedulerProvider
+    private val undoLastAction: UndoLastAction
 ) : BaseViewModel() {
 
     internal val viewStateLiveData = MutableLiveData<ShapesEditorViewState>()
@@ -75,11 +72,6 @@ class ShapesEditorViewModel @Inject constructor(
     private fun processShapesStream() =
         retrieveShapes
             .retrieveShapes()
-            .throttleLast(
-                SHAPES_STREAM_THROTTLE_DURATION_MS,
-                TimeUnit.MILLISECONDS,
-                schedulerProvider.computation()
-            )
             .subscribe(
                 { postViewState(it) },
                 { Timber.e(it, "Error retrieving shapes") }
@@ -92,8 +84,4 @@ class ShapesEditorViewModel @Inject constructor(
         } else {
             viewStateLiveData.postValue(ShapesEditorViewState.Content(items))
         }
-
-    companion object {
-        private const val SHAPES_STREAM_THROTTLE_DURATION_MS = 50L
-    }
 }
