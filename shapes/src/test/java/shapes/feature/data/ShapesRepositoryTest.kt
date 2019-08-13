@@ -10,7 +10,7 @@ import io.reactivex.Completable
 import io.reactivex.Single
 import io.reactivex.subjects.BehaviorSubject
 import org.junit.jupiter.api.Test
-import shapes.base.data.Stack
+import shapes.base.data.ShapeDataStack
 import shapes.base.database.ShapeDataEntity
 import shapes.base.database.ShapesDao
 import shapes.feature.TestObject
@@ -23,7 +23,7 @@ internal class ShapesRepositoryTest {
     private val shapesListDomainMapper: ShapesListDomainMapper = mock()
     private val shapeDataMapper: ShapeDataMapper = mock()
     private val shapeTypeDataMapper: ShapeTypeDataMapper = mock()
-    private val stack: Stack = mock()
+    private val stack: ShapeDataStack = mock()
 
     private val stream = BehaviorSubject.create<List<ShapeDataEntity>>()
 

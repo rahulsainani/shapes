@@ -3,18 +3,17 @@ package shapes.base.data
 import java.util.ArrayDeque
 import javax.inject.Inject
 import javax.inject.Singleton
-import shapes.base.database.ShapeDataEntity
 
 @Singleton
-class Stack @Inject constructor() {
+class Stack<T> @Inject constructor() {
 
-    private val stack = ArrayDeque<List<ShapeDataEntity>>()
+    private val stack = ArrayDeque<List<T>>()
 
-    fun push(list: List<ShapeDataEntity>) {
+    fun push(list: List<T>) {
         stack.push(list)
     }
 
-    fun pop(): List<ShapeDataEntity>? {
+    fun pop(): List<T>? {
         if (stack.size > 0) {
             return stack.pop()
         }

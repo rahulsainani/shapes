@@ -2,7 +2,7 @@ package shapes.feature.data
 
 import io.reactivex.Completable
 import io.reactivex.Flowable
-import shapes.base.data.Stack
+import shapes.base.data.ShapeDataStack
 import shapes.base.database.ShapesDao
 import shapes.base.rx.CompletableNetworkTransformer
 import shapes.base.rx.FlowableNetworkTransformer
@@ -15,7 +15,7 @@ class ShapesRepository @Inject constructor(
     private val shapesListDomainMapper: ShapesListDomainMapper,
     private val shapeDataMapper: ShapeDataMapper,
     private val shapeTypeDataMapper: ShapeTypeDataMapper,
-    private val stack: Stack
+    private val stack: ShapeDataStack
 ) : IShapesRepository {
 
     override fun getAllShapes(): Flowable<List<ShapeDomainEntity>> =
