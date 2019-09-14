@@ -39,8 +39,5 @@ dependencies {
     api config.dependencies.timber
 
     // Testing
-    testImplementation config.dependencies.jUnitJupiter
-    testImplementation config.dependencies.mockitoKotlin
-    testImplementation config.dependencies.mockitoInline
-    testImplementation config.dependencies.assertJ
+    testImplementation project(':test-core')
 }

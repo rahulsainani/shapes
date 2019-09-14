@@ -9,5 +9,8 @@ dependencies {
     implementation config.dependencies.rxjava
     implementation config.dependencies.dagger
     implementation config.dependencies.extensions
-    implementation config.dependencies.jUnitJupiter
+    api config.dependencies.jUnitJupiter
+    api config.dependencies.mockitoKotlin
+    api config.dependencies.mockitoInline
+    api config.dependencies.assertJ
 }
