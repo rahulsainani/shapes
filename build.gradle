@@ -61,7 +61,7 @@ ext {
 buildscript {
     ext.kotlin_version = '1.3.41'
     ext.kotlinVersion = kotlin_version
-    ext.agpVersion = '3.5.0-rc02'
+    ext.agpVersion = '3.5.0'
 
     repositories {
         google()
