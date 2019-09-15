@@ -1,3 +1,5 @@
+[![CircleCI](https://circleci.com/gh/rahulsainani/shapes/tree/master.svg?style=svg)](https://circleci.com/gh/rahulsainani/shapes/tree/master)
+
 # Shapes
 
 A simple android app that draws shapes on a canvas. 
