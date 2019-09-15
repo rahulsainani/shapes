@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_shapes_editor.*
 import shapes.base.di.AppComponentInjectHelper
 import shapes.base.presentation.toGone
@@ -16,7 +17,6 @@ import shapes.feature.di.editor.DaggerShapesComponent
 import shapes.feature.di.editor.ShapesModule
 import shapes.feature.domain.ShapeDomainEntity
 import shapes.feature.presentation.stats.StatisticsActivity
-import javax.inject.Inject
 
 class ShapesEditorActivity : AppCompatActivity(),
     ShapesView.ClickListener {
