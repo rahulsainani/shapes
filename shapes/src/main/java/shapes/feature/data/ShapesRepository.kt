@@ -5,8 +5,7 @@ import io.reactivex.Flowable
 import javax.inject.Inject
 import shapes.base.data.ShapeDataStack
 import shapes.base.database.ShapesDao
-import shapes.base.rx.CompletableNetworkTransformer
-import shapes.base.rx.FlowableNetworkTransformer
+import shapes.base.rx.IOTransformer
 import shapes.feature.domain.IShapesRepository
 import shapes.feature.domain.ShapeDomainEntity
 
@@ -21,7 +20,7 @@ class ShapesRepository @Inject constructor(
     override fun getAllShapes(): Flowable<List<ShapeDomainEntity>> =
         shapesDao
             .getAllShapes()
-            .compose(FlowableNetworkTransformer())
+            .compose(IOTransformer())
             .map(shapesListDomainMapper)
 
     override fun addShape(shapeDomainEntity: ShapeDomainEntity): Completable =
@@ -48,7 +47,7 @@ class ShapesRepository @Inject constructor(
         stack.pop()?.let {
             Completable
                 .fromAction { shapesDao.deleteAndInsertInTransaction(it) }
-                .compose(CompletableNetworkTransformer())
+                .compose(IOTransformer<Unit>())
         }
             ?: Completable.error(NoSuchElementException())
 
@@ -58,5 +57,5 @@ class ShapesRepository @Inject constructor(
             .doOnSuccess { stack.push(it) }
             .ignoreElement()
             .andThen(func())
-            .compose(CompletableNetworkTransformer())
+            .compose(IOTransformer<Unit>())
 }

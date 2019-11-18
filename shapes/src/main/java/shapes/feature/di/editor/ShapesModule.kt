@@ -7,7 +7,7 @@ import shapes.feature.data.ShapesRepository
 import shapes.feature.domain.IShapesRepository
 
 @Module
-class ShapesModule {
+object ShapesModule {
 
     @Provides
     @Reusable
