@@ -7,13 +7,13 @@ import javax.inject.Singleton
 @Singleton
 class Stack<T> @Inject constructor() {
 
-    private val stack = ArrayDeque<List<T>>()
+    private val stack = ArrayDeque<T>()
 
-    fun push(list: List<T>) {
-        stack.push(list)
+    fun push(item: T) {
+        stack.push(item)
     }
 
-    fun pop(): List<T>? {
+    fun pop(): T? {
         if (stack.size > 0) {
             return stack.pop()
         }
