@@ -14,12 +14,10 @@ import shapes.base.presentation.toGone
 import shapes.base.presentation.toVisible
 import shapes.feature.R
 import shapes.feature.di.editor.DaggerShapesComponent
-import shapes.feature.di.editor.ShapesModule
 import shapes.feature.domain.ShapeDomainEntity
 import shapes.feature.presentation.stats.StatisticsActivity
 
-class ShapesEditorActivity : AppCompatActivity(),
-    ShapesView.ClickListener {
+class ShapesEditorActivity : AppCompatActivity(), ShapesView.ClickListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -59,7 +57,6 @@ class ShapesEditorActivity : AppCompatActivity(),
     private fun inject() =
         DaggerShapesComponent.builder()
             .applicationComponent(AppComponentInjectHelper.provideAppComponent(applicationContext))
-            .shapesModule(ShapesModule())
             .build()
             .inject(this)
 

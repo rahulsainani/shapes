@@ -14,7 +14,6 @@ import shapes.base.di.AppComponentInjectHelper
 import shapes.base.presentation.toGone
 import shapes.base.presentation.toVisible
 import shapes.feature.R
-import shapes.feature.di.editor.ShapesModule
 import shapes.feature.di.stats.DaggerStatisticsComponent
 
 class StatisticsActivity : AppCompatActivity(), StatisticsAdapter.ClickListener {
@@ -43,7 +42,6 @@ class StatisticsActivity : AppCompatActivity(), StatisticsAdapter.ClickListener 
     private fun inject() =
         DaggerStatisticsComponent.builder()
             .applicationComponent(AppComponentInjectHelper.provideAppComponent(applicationContext))
-            .shapesModule(ShapesModule())
             .build()
             .inject(this)
 
