@@ -2,5 +2,6 @@ rootProject.name = 'Shapes'
 
 include ':app'
 include ':base'
+include ':database'
 include ':test-core'
 include ':shapes'

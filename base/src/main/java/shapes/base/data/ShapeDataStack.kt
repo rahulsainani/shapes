@@ -1,5 +1,5 @@
 package shapes.base.data
 
-import shapes.base.database.ShapeDataEntity
+import shapes.database.ShapeDataEntity
 
 typealias ShapeDataStack = Stack<List<ShapeDataEntity>>

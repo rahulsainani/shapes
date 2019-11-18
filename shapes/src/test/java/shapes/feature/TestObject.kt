@@ -1,6 +1,6 @@
 package shapes.feature
 
-import shapes.base.database.ShapeDataEntity
+import shapes.database.ShapeDataEntity
 import shapes.feature.domain.ShapeDomainEntity
 
 object TestObject {

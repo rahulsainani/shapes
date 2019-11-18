@@ -1,7 +1,7 @@
-package shapes.base.database
+package shapes.database
 
 import androidx.room.TypeConverter
-import shapes.base.database.ShapeDataEntity.ShapeType
+import shapes.database.ShapeDataEntity.ShapeType
 
 class ShapeTypeConverter {
     @TypeConverter

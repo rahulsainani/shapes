@@ -4,7 +4,6 @@ apply plugin: 'kotlin-android'
 def config = rootProject.extensions.getByName("ext")
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation config.dependencies.kotlin
     implementation config.dependencies.rxjava
     implementation config.dependencies.dagger

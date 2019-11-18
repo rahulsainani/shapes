@@ -6,8 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 def config = rootProject.extensions.getByName("ext")
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(':base')
+    implementation project(':base')
+    implementation project(':database')
 
     // Dependency Injection
     kapt config.dependencies.daggerCompiler

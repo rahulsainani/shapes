@@ -1,4 +1,4 @@
-package shapes.base.database
+package shapes.database
 
 import androidx.room.Dao
 import androidx.room.Delete

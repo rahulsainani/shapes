@@ -1,4 +1,4 @@
-package shapes.base.database
+package shapes.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

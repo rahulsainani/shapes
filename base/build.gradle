@@ -5,21 +5,7 @@ apply plugin: 'kotlin-android-extensions'
 
 def config = rootProject.extensions.getByName("ext")
 
-android {
-    defaultConfig {
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [
-                        "room.schemaLocation": "$projectDir/schemas".toString()
-                ]
-            }
-        }
-    }
-}
-
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     // Kotlin
     api config.dependencies.kotlin
     api config.dependencies.ktx
@@ -33,11 +19,9 @@ dependencies {
     // UI
     api config.dependencies.lottie
 
-    // Room
-    api config.dependencies.room
-    api config.dependencies.roomRx
-    api config.dependencies.roomKtx
-    kapt config.dependencies.roomCompiler
+    // Database
+    implementation project(':database')
+    implementation config.dependencies.room
 
     // Rx
     api config.dependencies.rxjava
