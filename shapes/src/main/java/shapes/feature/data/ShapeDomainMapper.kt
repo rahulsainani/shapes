@@ -2,8 +2,8 @@ package shapes.feature.data
 
 import io.reactivex.functions.Function
 import javax.inject.Inject
-import shapes.base.database.ShapeDataEntity
-import shapes.base.database.ShapeDataEntity.ShapeType
+import shapes.database.ShapeDataEntity
+import shapes.database.ShapeDataEntity.ShapeType
 import shapes.feature.domain.ShapeDomainEntity
 
 class ShapeDomainMapper @Inject constructor() : Function<ShapeDataEntity, ShapeDomainEntity> {

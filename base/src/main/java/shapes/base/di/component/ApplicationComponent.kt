@@ -5,9 +5,9 @@ import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
 import shapes.base.data.ShapeDataStack
-import shapes.base.database.DatabaseModule
-import shapes.base.database.ShapesDao
 import shapes.base.di.ApplicationContext
+import shapes.base.di.module.DatabaseModule
+import shapes.database.ShapesDao
 
 @Singleton
 @Component(modules = [DatabaseModule::class])

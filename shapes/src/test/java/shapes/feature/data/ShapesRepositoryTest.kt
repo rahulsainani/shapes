@@ -11,8 +11,8 @@ import io.reactivex.Single
 import io.reactivex.subjects.BehaviorSubject
 import org.junit.jupiter.api.Test
 import shapes.base.data.ShapeDataStack
-import shapes.base.database.ShapeDataEntity
-import shapes.base.database.ShapesDao
+import shapes.database.ShapeDataEntity
+import shapes.database.ShapesDao
 import shapes.feature.TestObject
 import shapes.test.core.RxPlugins
 

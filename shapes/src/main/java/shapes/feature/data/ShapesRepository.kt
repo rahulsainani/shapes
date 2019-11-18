@@ -4,8 +4,8 @@ import io.reactivex.Completable
 import io.reactivex.Flowable
 import javax.inject.Inject
 import shapes.base.data.ShapeDataStack
-import shapes.base.database.ShapesDao
 import shapes.base.rx.IOTransformer
+import shapes.database.ShapesDao
 import shapes.feature.domain.IShapesRepository
 import shapes.feature.domain.ShapeDomainEntity
 

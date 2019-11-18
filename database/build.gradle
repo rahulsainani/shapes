@@ -1,0 +1,36 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
+
+def config = rootProject.extensions.getByName("ext")
+
+android {
+    defaultConfig {
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [
+                        "room.schemaLocation": "$projectDir/schemas".toString()
+                ]
+            }
+        }
+    }
+}
+
+dependencies {
+    // Kotlin
+    implementation config.dependencies.kotlin
+    implementation config.dependencies.ktx
+
+    // Room
+    implementation config.dependencies.room
+    implementation config.dependencies.roomRx
+    implementation config.dependencies.roomKtx
+    kapt config.dependencies.roomCompiler
+
+    // Rx
+    implementation config.dependencies.rxjava
+
+    // Logging
+    implementation config.dependencies.timber
+}
