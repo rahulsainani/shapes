@@ -24,6 +24,12 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+
+    testOptions {
+        unitTests.all {
+            useJUnitPlatform()
+        }
+    }
 }
 
 apply plugin: 'org.jlleitschuh.gradle.ktlint'
