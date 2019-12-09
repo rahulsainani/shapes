@@ -31,6 +31,7 @@ object Libs {
 
     // Testing
     const val junitJupiter = "org.junit.jupiter:junit-jupiter-api:${Versions.junitJupiter}"
+    const val junitJupiterEngine = "org.junit.jupiter:junit-jupiter-engine:${Versions.junitJupiter}"
     const val mockitoInline = "org.mockito:mockito-inline:${Versions.mockitoInline}"
     const val mockitoKotlin =
         "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.mockitoKotlin}"

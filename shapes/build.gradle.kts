@@ -21,4 +21,5 @@ dependencies {
 
     // Testing
     testImplementation(project(Modules.testCore))
+    testRuntimeOnly(Libs.junitJupiterEngine)
 }
