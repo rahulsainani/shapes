@@ -33,4 +33,8 @@ dependencies {
     implementation(Libs.room)
     implementation(Libs.roomRx)
     kapt(Libs.roomCompiler)
+
+    // Testing
+    testImplementation(project(Modules.testCore))
+    testRuntimeOnly(Libs.junitJupiterEngine)
 }

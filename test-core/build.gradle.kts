@@ -11,7 +11,7 @@ dependencies {
     implementation(Libs.lifecycleExtensions)
 
     api(Libs.junitJupiter)
-    runtimeOnly(Libs.junitJupiterEngine)
+    testRuntimeOnly(Libs.junitJupiterEngine)
     api(Libs.mockitoKotlin)
     api(Libs.mockitoInline)
     api(Libs.assertJCore)
