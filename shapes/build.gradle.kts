@@ -10,13 +10,24 @@ dependencies {
     implementation(project(Modules.base))
     implementation(project(Modules.database))
 
+    // Logging
+    implementation(Libs.timber)
+
+    // Rx
+    implementation(Libs.rxJava)
+
     // Dependency Injection
+    implementation(Libs.dagger)
     kapt(Libs.daggerCompiler)
 
     // AndroidX
     implementation(Libs.appCompat)
+    implementation(Libs.lifecycleExtensions)
+    implementation(Libs.material)
     implementation(Libs.constraintLayout)
     implementation(Libs.recyclerview)
+
+    // Animations
     implementation(Libs.lottie)
 
     // Testing
