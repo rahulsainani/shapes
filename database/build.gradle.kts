@@ -20,14 +20,14 @@ android {
 
 dependencies {
     // Kotlin
-    api(Libs.kotlin_stdlib_jdk7)
-    api(Libs.coreKtx)
+    implementation(Libs.kotlin_stdlib_jdk7)
+    implementation(Libs.coreKtx)
 
     // Logging
-    api(Libs.timber)
+    implementation(Libs.timber)
 
     // Rx
-    api(Libs.rxJava)
+    implementation(Libs.rxJava)
 
     // Database
     implementation(Libs.room)
