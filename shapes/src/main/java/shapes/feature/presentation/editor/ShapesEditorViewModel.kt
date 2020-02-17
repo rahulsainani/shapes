@@ -1,7 +1,8 @@
 package shapes.feature.presentation.editor
 
 import androidx.lifecycle.MutableLiveData
-import javax.inject.Inject
+import androidx.lifecycle.viewModelScope
+import shapes.base.extensions.launchSafe
 import shapes.base.presentation.BaseViewModel
 import shapes.feature.domain.AddShape
 import shapes.feature.domain.DeleteShape
@@ -10,6 +11,7 @@ import shapes.feature.domain.ShapeDomainEntity
 import shapes.feature.domain.SwitchShape
 import shapes.feature.domain.UndoLastAction
 import timber.log.Timber
+import javax.inject.Inject
 
 class ShapesEditorViewModel @Inject constructor(
     private val retrieveShapes: RetrieveShapes,
@@ -31,43 +33,33 @@ class ShapesEditorViewModel @Inject constructor(
 
     internal fun onTriangleClick() = addShape(ShapeDomainEntity.Type.TRIANGLE)
 
-    internal fun onShapeClick(shapeDomainEntity: ShapeDomainEntity) =
-        switchShape
-            .switchShape(shapeDomainEntity)
-            .subscribe(
-                { Timber.d("Shape updated successfully") },
-                { Timber.e(it, "Error updating shape") }
-            )
-            .addToCompositeDisposable()
+    internal fun onShapeClick(shapeDomainEntity: ShapeDomainEntity) {
+        viewModelScope.launchSafe(
+            { switchShape.switchShape(shapeDomainEntity) },
+            { Timber.e(it, "Error updating shape") }
+        )
+    }
 
     internal fun onShapeLongClick(shapeDomainEntity: ShapeDomainEntity) {
-        deleteShape
-            .delete(shapeDomainEntity)
-            .subscribe(
-                { Timber.d("Shape deleted successfully") },
-                { Timber.e(it, "Error deleting shape") }
-            )
-            .addToCompositeDisposable()
+        viewModelScope.launchSafe(
+            { deleteShape.delete(shapeDomainEntity) },
+            { Timber.e(it, "Error deleting shape") }
+        )
     }
 
     internal fun onUndoClick() {
-        undoLastAction
-            .undo()
-            .subscribe(
-                { Timber.d("Undo successful") },
-                { Timber.e(it, "Error doing onUndoClick") }
-            )
-            .addToCompositeDisposable()
+        viewModelScope.launchSafe(
+            { undoLastAction.undo() },
+            { Timber.e(it, "Error doing onUndoClick") }
+        )
     }
 
-    private fun addShape(type: ShapeDomainEntity.Type) =
-        addShape
-            .addShape(type)
-            .subscribe(
-                { Timber.d("Shape added successfully") },
-                { Timber.e(it, "Error adding shape") }
-            )
-            .addToCompositeDisposable()
+    private fun addShape(type: ShapeDomainEntity.Type) {
+        viewModelScope.launchSafe(
+            { addShape.addShape(type) },
+            { Timber.e(it, "Error adding shape") }
+        )
+    }
 
     private fun processShapesStream() =
         retrieveShapes

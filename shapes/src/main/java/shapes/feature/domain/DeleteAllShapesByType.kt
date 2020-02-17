@@ -1,12 +1,11 @@
 package shapes.feature.domain
 
-import io.reactivex.Completable
 import javax.inject.Inject
 
 class DeleteAllShapesByType @Inject constructor(
     private val repository: IShapesRepository
 ) {
 
-    fun delete(shapeType: ShapeDomainEntity.Type): Completable =
+    suspend fun delete(shapeType: ShapeDomainEntity.Type) =
         repository.deleteAllShapesByType(shapeType)
 }

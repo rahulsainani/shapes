@@ -1,21 +1,24 @@
 package shapes.feature.presentation.stats
 
-import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
 import io.reactivex.BackpressureStrategy
-import io.reactivex.Completable
 import io.reactivex.subjects.BehaviorSubject
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import shapes.feature.domain.DeleteAllShapesByType
 import shapes.feature.domain.RetrieveShapes
 import shapes.feature.domain.ShapeDomainEntity
+import shapes.test.core.CoroutinesExtension
 import shapes.test.core.InstantTask
 
+@ExperimentalCoroutinesApi
 @InstantTask
+@CoroutinesExtension
 internal class StatisticsViewModelTest {
 
     private val retrieveShapes: RetrieveShapes = mock()
@@ -62,9 +65,8 @@ internal class StatisticsViewModelTest {
     }
 
     @Test
-    fun `delete all shapes of type is called on item click`() {
+    fun `delete all shapes of type is called on item click`() = runBlockingTest {
         val shapeType = ShapeDomainEntity.Type.TRIANGLE
-        whenever(deleteAllShapesByType.delete(any())).thenReturn(Completable.complete())
 
         tested.onItemClick(shapeType)
 

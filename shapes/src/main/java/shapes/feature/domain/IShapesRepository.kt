@@ -1,19 +1,20 @@
 package shapes.feature.domain
 
-import io.reactivex.Completable
 import io.reactivex.Flowable
 
 interface IShapesRepository {
 
     fun getAllShapes(): Flowable<List<ShapeDomainEntity>>
 
-    fun addShape(shapeDomainEntity: ShapeDomainEntity): Completable
+    suspend fun getAllShapesOneShot(): List<ShapeDomainEntity>
 
-    fun updateShape(shapeDomainEntity: ShapeDomainEntity): Completable
+    suspend fun addShape(shapeDomainEntity: ShapeDomainEntity)
 
-    fun delete(shapeDomainEntity: ShapeDomainEntity): Completable
+    suspend fun updateShape(shapeDomainEntity: ShapeDomainEntity)
 
-    fun deleteAllShapesByType(shapeType: ShapeDomainEntity.Type): Completable
+    suspend fun delete(shapeDomainEntity: ShapeDomainEntity)
 
-    fun undo(): Completable
+    suspend fun deleteAllShapesByType(shapeType: ShapeDomainEntity.Type)
+
+    suspend fun undo()
 }

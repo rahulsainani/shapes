@@ -23,6 +23,7 @@ dependencies {
     // AndroidX
     implementation(Libs.appCompat)
     implementation(Libs.lifecycleExtensions)
+    implementation(Libs.lifecycleViewmodelKtx)
     implementation(Libs.material)
     implementation(Libs.constraintLayout)
     implementation(Libs.recyclerview)

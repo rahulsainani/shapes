@@ -15,4 +15,5 @@ dependencies {
     api(Libs.mockitoKotlin)
     api(Libs.mockitoInline)
     api(Libs.assertJCore)
+    api(Libs.coroutinesTest)
 }

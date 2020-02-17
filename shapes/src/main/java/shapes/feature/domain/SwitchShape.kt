@@ -1,6 +1,5 @@
 package shapes.feature.domain
 
-import io.reactivex.Completable
 import javax.inject.Inject
 import shapes.feature.domain.ShapeDomainEntity.Type.CIRCLE
 import shapes.feature.domain.ShapeDomainEntity.Type.SQUARE
@@ -10,7 +9,7 @@ class SwitchShape @Inject constructor(
     private val repository: IShapesRepository
 ) {
 
-    fun switchShape(shapeDomainEntity: ShapeDomainEntity): Completable {
+    suspend fun switchShape(shapeDomainEntity: ShapeDomainEntity) {
         val updatedShape = when (shapeDomainEntity.type) {
             SQUARE -> CIRCLE
             CIRCLE -> TRIANGLE

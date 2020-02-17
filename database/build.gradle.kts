@@ -32,6 +32,7 @@ dependencies {
     // Database
     implementation(Libs.room)
     implementation(Libs.roomRx)
+    implementation(Libs.roomKtx)
     kapt(Libs.roomCompiler)
 
     // Testing
