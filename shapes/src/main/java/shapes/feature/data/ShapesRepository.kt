@@ -1,12 +1,12 @@
 package shapes.feature.data
 
 import io.reactivex.Flowable
+import javax.inject.Inject
 import shapes.base.data.ShapeDataStack
 import shapes.base.rx.IOTransformer
 import shapes.database.ShapesDao
 import shapes.feature.domain.IShapesRepository
 import shapes.feature.domain.ShapeDomainEntity
-import javax.inject.Inject
 
 class ShapesRepository @Inject constructor(
     private val shapesDao: ShapesDao,

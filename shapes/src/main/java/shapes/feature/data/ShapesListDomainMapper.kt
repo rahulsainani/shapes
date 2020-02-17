@@ -1,8 +1,8 @@
 package shapes.feature.data
 
+import javax.inject.Inject
 import shapes.database.ShapeDataEntity
 import shapes.feature.domain.ShapeDomainEntity
-import javax.inject.Inject
 
 class ShapesListDomainMapper @Inject constructor(
     private val shapesDomainMapper: ShapeDomainMapper

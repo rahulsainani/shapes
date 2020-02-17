@@ -1,8 +1,8 @@
 package shapes.test.core
 
+import javax.inject.Qualifier
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.junit.jupiter.api.extension.ExtendWith
-import javax.inject.Qualifier
 
 @ExperimentalCoroutinesApi
 @Qualifier
