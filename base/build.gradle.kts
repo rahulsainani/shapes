@@ -15,9 +15,6 @@ dependencies {
     // Logging
     implementation(Libs.timber)
 
-    // Rx
-    implementation(Libs.rxJava)
-
     // Dependency Injection
     implementation(Libs.dagger)
     kapt(Libs.daggerCompiler)

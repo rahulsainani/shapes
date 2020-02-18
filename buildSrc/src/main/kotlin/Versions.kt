@@ -19,7 +19,6 @@ object Versions {
     const val dagger = "2.25.2"
     const val jsr305 = "3.0.2"
     const val timber = "4.7.1"
-    const val rxJava = "2.2.14"
     const val room = "2.2.3"
     const val lottie = "2.8.0"
 

@@ -6,7 +6,6 @@ apply(from = "${rootProject.projectDir}/android.gradle")
 
 dependencies {
     implementation(Libs.kotlin_stdlib_jdk7)
-    implementation(Libs.rxJava)
     implementation(Libs.dagger)
     implementation(Libs.lifecycleExtensions)
 

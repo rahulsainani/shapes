@@ -26,12 +26,8 @@ dependencies {
     // Logging
     implementation(Libs.timber)
 
-    // Rx
-    implementation(Libs.rxJava)
-
     // Database
     implementation(Libs.room)
-    implementation(Libs.roomRx)
     implementation(Libs.roomKtx)
     kapt(Libs.roomCompiler)
 

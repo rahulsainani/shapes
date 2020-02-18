@@ -16,10 +16,8 @@ import shapes.base.data.ShapeDataStack
 import shapes.database.ShapeDataEntity
 import shapes.database.ShapesDao
 import shapes.feature.TestObject
-import shapes.test.core.RxPlugins
 
 @ExperimentalCoroutinesApi
-@RxPlugins
 internal class ShapesRepositoryTest {
 
     private val shapesDao: ShapesDao = mock()
