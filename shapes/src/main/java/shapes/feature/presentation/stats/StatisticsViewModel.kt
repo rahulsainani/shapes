@@ -1,10 +1,12 @@
 package shapes.feature.presentation.stats
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import javax.inject.Inject
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.map
 import shapes.base.extensions.launchSafe
-import shapes.base.presentation.BaseViewModel
 import shapes.feature.domain.DeleteAllShapesByType
 import shapes.feature.domain.RetrieveShapes
 import shapes.feature.domain.ShapeDomainEntity
@@ -14,7 +16,7 @@ class StatisticsViewModel @Inject constructor(
     private val retrieveShapes: RetrieveShapes,
     private val deleteAllShapesByType: DeleteAllShapesByType,
     private val statisticsViewEntityMapper: StatisticsViewEntityMapper
-) : BaseViewModel() {
+) : ViewModel() {
 
     internal val statsViewStateLiveData = MutableLiveData<StatisticsViewState>()
 
@@ -29,15 +31,17 @@ class StatisticsViewModel @Inject constructor(
         )
     }
 
-    private fun processShapesStream() =
-        retrieveShapes
-            .retrieveShapes()
-            .map(statisticsViewEntityMapper)
-            .subscribe(
-                { postViewState(it) },
-                { Timber.e(it, "Error retrieving shapes") }
-            )
-            .addToCompositeDisposable()
+    private fun processShapesStream() {
+        viewModelScope.launchSafe(
+            {
+                retrieveShapes
+                    .retrieveShapes()
+                    .map { statisticsViewEntityMapper.apply(it) }
+                    .collect { postViewState(it) }
+            },
+            { Timber.e(it, "Error retrieving shapes") }
+        )
+    }
 
     private fun postViewState(items: List<StatisticsItemEntity>) =
         if (items.isEmpty()) {

@@ -1,6 +1,5 @@
 package shapes.feature.presentation.stats
 
-import io.reactivex.functions.Function
 import javax.inject.Inject
 import shapes.base.presentation.StringsProvider
 import shapes.feature.R
@@ -9,10 +8,9 @@ import shapes.feature.domain.ShapeDomainEntity.Type
 
 class StatisticsViewEntityMapper @Inject constructor(
     private val stringsProvider: StringsProvider
-) :
-    Function<List<ShapeDomainEntity>, List<StatisticsItemEntity>> {
+) {
 
-    override fun apply(shapesList: List<ShapeDomainEntity>): List<StatisticsItemEntity> {
+    fun apply(shapesList: List<ShapeDomainEntity>): List<StatisticsItemEntity> {
         return shapesList
             .groupBy { entity -> entity.type }
             .map { entry -> mapToStatisticsItemEntity(entry) }

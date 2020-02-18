@@ -6,13 +6,13 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
-import io.reactivex.Flowable
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ShapesDao {
 
     @Query("SELECT * FROM shapes")
-    fun getAllShapes(): Flowable<List<ShapeDataEntity>>
+    fun getAllShapes(): Flow<List<ShapeDataEntity>>
 
     @Query("SELECT * FROM shapes")
     suspend fun getAllShapesOneShot(): List<ShapeDataEntity>

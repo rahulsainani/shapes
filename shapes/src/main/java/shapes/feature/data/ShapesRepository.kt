@@ -1,9 +1,9 @@
 package shapes.feature.data
 
-import io.reactivex.Flowable
 import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import shapes.base.data.ShapeDataStack
-import shapes.base.rx.IOTransformer
 import shapes.database.ShapesDao
 import shapes.feature.domain.IShapesRepository
 import shapes.feature.domain.ShapeDomainEntity
@@ -16,10 +16,9 @@ class ShapesRepository @Inject constructor(
     private val stack: ShapeDataStack
 ) : IShapesRepository {
 
-    override fun getAllShapes(): Flowable<List<ShapeDomainEntity>> =
+    override fun getAllShapes(): Flow<List<ShapeDomainEntity>> =
         shapesDao
             .getAllShapes()
-            .compose(IOTransformer())
             .map { shapesListDomainMapper.apply(it) }
 
     override suspend fun getAllShapesOneShot(): List<ShapeDomainEntity> {

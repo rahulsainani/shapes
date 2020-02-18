@@ -5,10 +5,11 @@ import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.never
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import io.reactivex.BackpressureStrategy
-import io.reactivex.subjects.BehaviorSubject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runBlockingTest
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import shapes.base.data.ShapeDataStack
@@ -27,8 +28,6 @@ internal class ShapesRepositoryTest {
     private val shapeTypeDataMapper: ShapeTypeDataMapper = mock()
     private val stack: ShapeDataStack = mock()
 
-    private val stream = BehaviorSubject.create<List<ShapeDataEntity>>()
-
     private val tested =
         ShapesRepository(
             shapesDao,
@@ -39,25 +38,21 @@ internal class ShapesRepositoryTest {
         )
 
     @Test
-    fun `should return shape domain list on get all shapes`() {
+    fun `should return shape domain list on get all shapes`() = runBlockingTest {
         val shapeDomainEntity = TestObject.shapeDomainEntity()
         val shapeDomainList = listOf(shapeDomainEntity)
         val shapeDataEntity = TestObject.shapeDataEntity()
         val shapeDataEntityList = listOf(shapeDataEntity)
+        val expected = listOf(shapeDomainList)
 
-        whenever(shapesDao.getAllShapes())
-            .thenReturn(stream.toFlowable(BackpressureStrategy.LATEST))
+        val flow = flow { emit(shapeDataEntityList) }
+
+        whenever(shapesDao.getAllShapes()).thenReturn(flow)
         whenever(shapesListDomainMapper.apply(shapeDataEntityList)).thenReturn(shapeDomainList)
 
-        stream.onNext(shapeDataEntityList)
+        val actual = tested.getAllShapes().toList()
 
-        tested
-            .getAllShapes()
-            .test()
-            .assertValue(shapeDomainList)
-            .assertNotComplete()
-            .assertNoErrors()
-
+        assertEquals(expected, actual)
         verify(shapesDao).getAllShapes()
     }
 

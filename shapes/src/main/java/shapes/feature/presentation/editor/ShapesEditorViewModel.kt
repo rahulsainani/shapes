@@ -1,10 +1,11 @@
 package shapes.feature.presentation.editor
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import javax.inject.Inject
+import kotlinx.coroutines.flow.collect
 import shapes.base.extensions.launchSafe
-import shapes.base.presentation.BaseViewModel
 import shapes.feature.domain.AddShape
 import shapes.feature.domain.DeleteShape
 import shapes.feature.domain.RetrieveShapes
@@ -19,7 +20,7 @@ class ShapesEditorViewModel @Inject constructor(
     private val switchShape: SwitchShape,
     private val deleteShape: DeleteShape,
     private val undoLastAction: UndoLastAction
-) : BaseViewModel() {
+) : ViewModel() {
 
     internal val viewStateLiveData = MutableLiveData<ShapesEditorViewState>()
 
@@ -61,14 +62,12 @@ class ShapesEditorViewModel @Inject constructor(
         )
     }
 
-    private fun processShapesStream() =
-        retrieveShapes
-            .retrieveShapes()
-            .subscribe(
-                { postViewState(it) },
-                { Timber.e(it, "Error retrieving shapes") }
-            )
-            .addToCompositeDisposable()
+    private fun processShapesStream() {
+        viewModelScope.launchSafe(
+            { retrieveShapes.retrieveShapes().collect { postViewState(it) } },
+            { Timber.e(it, "Error retrieving shapes") }
+        )
+    }
 
     private fun postViewState(items: List<ShapeDomainEntity>) =
         if (items.isEmpty()) {

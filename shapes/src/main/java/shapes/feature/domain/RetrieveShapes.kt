@@ -1,11 +1,11 @@
 package shapes.feature.domain
 
-import io.reactivex.Flowable
 import javax.inject.Inject
+import kotlinx.coroutines.flow.Flow
 
 class RetrieveShapes @Inject constructor(
     private val repository: IShapesRepository
 ) {
 
-    fun retrieveShapes(): Flowable<List<ShapeDomainEntity>> = repository.getAllShapes()
+    fun retrieveShapes(): Flow<List<ShapeDomainEntity>> = repository.getAllShapes()
 }

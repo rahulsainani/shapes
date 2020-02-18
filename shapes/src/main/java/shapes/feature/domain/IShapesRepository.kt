@@ -1,10 +1,10 @@
 package shapes.feature.domain
 
-import io.reactivex.Flowable
+import kotlinx.coroutines.flow.Flow
 
 interface IShapesRepository {
 
-    fun getAllShapes(): Flowable<List<ShapeDomainEntity>>
+    fun getAllShapes(): Flow<List<ShapeDomainEntity>>
 
     suspend fun getAllShapesOneShot(): List<ShapeDomainEntity>
 
