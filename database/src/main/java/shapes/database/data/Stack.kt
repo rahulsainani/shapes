@@ -1,4 +1,4 @@
-package shapes.base.data
+package shapes.database.data
 
 import java.util.ArrayDeque
 import javax.inject.Inject

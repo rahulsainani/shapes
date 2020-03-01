@@ -9,9 +9,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_shapes_editor.*
-import shapes.base.di.AppComponentInjectHelper
 import shapes.base.presentation.toGone
 import shapes.base.presentation.toVisible
+import shapes.di.AppComponentInjectHelper
 import shapes.feature.R
 import shapes.feature.di.editor.DaggerShapesComponent
 import shapes.feature.domain.ShapeDomainEntity

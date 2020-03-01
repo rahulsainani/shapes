@@ -12,9 +12,9 @@ import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import shapes.base.data.ShapeDataStack
 import shapes.database.ShapeDataEntity
 import shapes.database.ShapesDao
+import shapes.database.data.ShapeDataStack
 import shapes.feature.TestObject
 
 @ExperimentalCoroutinesApi

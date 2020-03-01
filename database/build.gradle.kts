@@ -31,6 +31,9 @@ dependencies {
     implementation(Libs.roomKtx)
     kapt(Libs.roomCompiler)
 
+    implementation(Libs.dagger)
+    kapt(Libs.daggerCompiler)
+
     // Testing
     testImplementation(project(Modules.testCore))
     testRuntimeOnly(Libs.junitJupiterEngine)

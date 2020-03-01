@@ -1,4 +1,4 @@
-package shapes.base.di
+package shapes.di
 
 import javax.inject.Scope
 import kotlin.annotation.AnnotationRetention.RUNTIME

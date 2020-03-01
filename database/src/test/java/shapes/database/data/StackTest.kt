@@ -1,4 +1,4 @@
-package shapes.base.data
+package shapes.database.data
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNull

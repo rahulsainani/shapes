@@ -1,4 +1,4 @@
-package shapes.base.data
+package shapes.database.data
 
 import shapes.database.ShapeDataEntity
 

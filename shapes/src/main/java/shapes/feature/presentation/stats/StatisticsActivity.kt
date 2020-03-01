@@ -10,9 +10,9 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_statistics.*
-import shapes.base.di.AppComponentInjectHelper
 import shapes.base.presentation.toGone
 import shapes.base.presentation.toVisible
+import shapes.di.AppComponentInjectHelper
 import shapes.feature.R
 import shapes.feature.di.stats.DaggerStatisticsComponent
 

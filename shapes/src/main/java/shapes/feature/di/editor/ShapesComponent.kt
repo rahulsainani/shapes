@@ -1,9 +1,9 @@
 package shapes.feature.di.editor
 
 import dagger.Component
-import shapes.base.di.PerActivity
-import shapes.base.di.component.ApplicationComponent
-import shapes.base.di.module.ViewModelFactoryModule
+import shapes.di.PerActivity
+import shapes.di.component.ApplicationComponent
+import shapes.di.module.ViewModelFactoryModule
 import shapes.feature.presentation.editor.ShapesEditorActivity
 
 @PerActivity
