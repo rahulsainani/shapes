@@ -1,13 +1,13 @@
-package shapes.base.di.component
+package shapes.di.component
 
 import android.content.Context
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
-import shapes.base.data.ShapeDataStack
 import shapes.base.di.ApplicationContext
-import shapes.base.di.module.DatabaseModule
 import shapes.database.ShapesDao
+import shapes.database.data.ShapeDataStack
+import shapes.di.module.DatabaseModule
 
 @Singleton
 @Component(modules = [DatabaseModule::class])

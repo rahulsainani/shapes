@@ -3,8 +3,8 @@ package shapes.feature.data
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import shapes.base.data.ShapeDataStack
 import shapes.database.ShapesDao
+import shapes.database.data.ShapeDataStack
 import shapes.feature.domain.IShapesRepository
 import shapes.feature.domain.ShapeDomainEntity
 

@@ -1,4 +1,4 @@
-package shapes.base.di
+package shapes.di
 
 import androidx.lifecycle.ViewModel
 import dagger.MapKey

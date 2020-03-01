@@ -1,6 +1,6 @@
-package shapes.base.di
+package shapes.di
 
-import shapes.base.di.component.ApplicationComponent
+import shapes.di.component.ApplicationComponent
 
 interface AppComponentProvider {
     fun provideAppComponent(): ApplicationComponent

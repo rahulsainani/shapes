@@ -9,6 +9,7 @@ apply(from = "${rootProject.projectDir}/android.gradle")
 dependencies {
     implementation(project(Modules.base))
     implementation(project(Modules.database))
+    implementation(project(Modules.di))
 
     // Logging
     implementation(Libs.timber)

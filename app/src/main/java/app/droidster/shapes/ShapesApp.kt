@@ -1,9 +1,9 @@
 package app.droidster.shapes
 
 import android.app.Application
-import shapes.base.di.AppComponentProvider
-import shapes.base.di.component.ApplicationComponent
-import shapes.base.di.component.DaggerApplicationComponent
+import shapes.di.AppComponentProvider
+import shapes.di.component.ApplicationComponent
+import shapes.di.component.DaggerApplicationComponent
 import timber.log.Timber
 
 class ShapesApp : Application(), AppComponentProvider {

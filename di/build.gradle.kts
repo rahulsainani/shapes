@@ -6,19 +6,21 @@ plugins {
 apply(from = "${rootProject.projectDir}/android.gradle")
 
 dependencies {
+    implementation(project(Modules.database))
+    implementation(project(Modules.base))
+
     // Kotlin
     implementation(Libs.kotlin_stdlib_jdk7)
     implementation(Libs.coreKtx)
-    implementation(Libs.coroutinesCore)
-
-    // Logging
-    implementation(Libs.timber)
 
     // Dependency Injection
     implementation(Libs.dagger)
     kapt(Libs.daggerCompiler)
+    implementation(Libs.jsr305)
 
-    // Testing
-    testImplementation(project(Modules.testCore))
-    testRuntimeOnly(Libs.junitJupiterEngine)
+    // AndroidX
+    implementation(Libs.lifecycleViewmodel)
+
+    // Database
+    implementation(Libs.room)
 }

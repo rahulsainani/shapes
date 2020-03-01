@@ -1,7 +1,7 @@
-package shapes.base.di
+package shapes.di
 
 import android.content.Context
-import shapes.base.di.component.ApplicationComponent
+import shapes.di.component.ApplicationComponent
 
 object AppComponentInjectHelper {
     fun provideAppComponent(applicationContext: Context): ApplicationComponent {
