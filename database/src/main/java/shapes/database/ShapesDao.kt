@@ -6,39 +6,37 @@ import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Transaction
 import androidx.room.Update
-import io.reactivex.Completable
-import io.reactivex.Flowable
-import io.reactivex.Single
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ShapesDao {
 
     @Query("SELECT * FROM shapes")
-    fun getAllShapes(): Flowable<List<ShapeDataEntity>>
+    fun getAllShapes(): Flow<List<ShapeDataEntity>>
 
     @Query("SELECT * FROM shapes")
-    fun getAllShapesSingle(): Single<List<ShapeDataEntity>>
+    suspend fun getAllShapesOneShot(): List<ShapeDataEntity>
 
     @Insert
-    fun insert(shapeDataEntity: ShapeDataEntity): Completable
+    suspend fun insert(shapeDataEntity: ShapeDataEntity)
 
     @Update
-    fun update(shapeDataEntity: ShapeDataEntity): Completable
+    suspend fun update(shapeDataEntity: ShapeDataEntity)
 
     @Delete
-    fun delete(shapeDataEntity: ShapeDataEntity): Completable
+    suspend fun delete(shapeDataEntity: ShapeDataEntity)
 
     @Query("DELETE FROM shapes WHERE type = :shapeType")
-    fun deleteAllShapesByType(shapeType: ShapeDataEntity.ShapeType): Completable
+    suspend fun deleteAllShapesByType(shapeType: ShapeDataEntity.ShapeType)
 
     @Insert
-    fun insertAll(shapeDataEntityList: List<ShapeDataEntity>)
+    suspend fun insertAll(shapeDataEntityList: List<ShapeDataEntity>)
 
     @Query("DELETE FROM shapes")
-    fun deleteAll()
+    suspend fun deleteAll()
 
     @Transaction
-    fun deleteAndInsertInTransaction(shapeDataEntityList: List<ShapeDataEntity>) {
+    suspend fun deleteAndInsertInTransaction(shapeDataEntityList: List<ShapeDataEntity>) {
         deleteAll()
         insertAll(shapeDataEntityList)
     }

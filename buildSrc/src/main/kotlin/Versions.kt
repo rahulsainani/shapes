@@ -6,7 +6,8 @@ object Versions {
     const val appVersionCode = 1
     const val appVersionName = "1.0"
 
-    const val org_jetbrains_kotlin = "1.3.41"
+    const val org_jetbrains_kotlin = "1.3.61"
+    const val coroutines = "1.3.3"
 
     const val ktx = "1.1.0"
     const val appCompat = "1.1.0"
@@ -18,8 +19,7 @@ object Versions {
     const val dagger = "2.25.2"
     const val jsr305 = "3.0.2"
     const val timber = "4.7.1"
-    const val rxJava = "2.2.14"
-    const val room = "2.2.1"
+    const val room = "2.2.3"
     const val lottie = "2.8.0"
 
     const val junitJupiter = "5.5.2"

@@ -4,11 +4,12 @@ import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import io.reactivex.Completable
-import io.reactivex.Flowable
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Test
 import shapes.feature.TestObject.shapeDomainEntity
 
+@ExperimentalCoroutinesApi
 internal class AddShapeTest {
 
     private val repository: IShapesRepository = mock()
@@ -16,21 +17,16 @@ internal class AddShapeTest {
     private val tested = AddShape(repository, randomGridPositionGenerator)
 
     @Test
-    fun `should add shape with the id returned by generator`() {
+    fun `should add shape with the id returned by generator`() = runBlockingTest {
         val list = listOf(shapeDomainEntity(), shapeDomainEntity(id = 3), shapeDomainEntity(id = 4))
         val id = 2
         val shapeType = ShapeDomainEntity.Type.SQUARE
         val shapeDomainEntity = ShapeDomainEntity(id, shapeType)
 
-        whenever(repository.getAllShapes()).thenReturn(Flowable.just(list))
+        whenever(repository.getAllShapesOneShot()).thenReturn(list)
         whenever(randomGridPositionGenerator.generate(any())).thenReturn(id)
-        whenever(repository.addShape(any())).thenReturn(Completable.complete())
 
-        tested
-            .addShape(shapeType)
-            .test()
-            .assertComplete()
-            .assertNoErrors()
+        tested.addShape(shapeType)
 
         verify(repository).addShape(shapeDomainEntity)
     }

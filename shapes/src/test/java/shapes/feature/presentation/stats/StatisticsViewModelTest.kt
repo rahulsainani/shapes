@@ -1,49 +1,49 @@
 package shapes.feature.presentation.stats
 
-import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import io.reactivex.BackpressureStrategy
-import io.reactivex.Completable
-import io.reactivex.subjects.BehaviorSubject
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import shapes.feature.domain.DeleteAllShapesByType
 import shapes.feature.domain.RetrieveShapes
 import shapes.feature.domain.ShapeDomainEntity
+import shapes.test.core.CoroutinesExtension
 import shapes.test.core.InstantTask
 
+@ExperimentalCoroutinesApi
 @InstantTask
+@CoroutinesExtension
 internal class StatisticsViewModelTest {
 
     private val retrieveShapes: RetrieveShapes = mock()
     private val deleteAllShapesByType: DeleteAllShapesByType = mock()
     private val statisticsViewEntityMapper: StatisticsViewEntityMapper = mock()
 
-    private val shapesSteam = BehaviorSubject.create<List<ShapeDomainEntity>>()
-
     private lateinit var tested: StatisticsViewModel
 
     private val shapesList = mock<List<ShapeDomainEntity>>()
 
-    @BeforeEach
-    fun setup() {
-        whenever(retrieveShapes.retrieveShapes())
-            .thenReturn(shapesSteam.toFlowable(BackpressureStrategy.LATEST))
-
+    private fun init() {
         tested = StatisticsViewModel(
             retrieveShapes, deleteAllShapesByType, statisticsViewEntityMapper
         )
     }
 
+    private fun initWithFlow() {
+        whenever(retrieveShapes.retrieveShapes()).thenReturn(flowOf(shapesList))
+        init()
+    }
+
     @Test
-    fun `number of shapes is posted on live data`() {
-        val statItemEntities = listOf<StatisticsItemEntity>(mock(), mock())
+    fun `number of shapes is posted on live data`() = runBlockingTest {
+        val statItemEntities: List<StatisticsItemEntity> = listOf(mock(), mock())
         whenever(statisticsViewEntityMapper.apply(shapesList)).thenReturn(statItemEntities)
 
-        shapesSteam.onNext(shapesList)
+        initWithFlow()
 
         assertEquals(
             StatisticsViewState.Content(statItemEntities),
@@ -52,19 +52,18 @@ internal class StatisticsViewModelTest {
     }
 
     @Test
-    fun `empty is posted on live data`() {
+    fun `empty is posted on live data`() = runBlockingTest {
         val statItemEntities = emptyList<StatisticsItemEntity>()
         whenever(statisticsViewEntityMapper.apply(shapesList)).thenReturn(statItemEntities)
-
-        shapesSteam.onNext(shapesList)
+        initWithFlow()
 
         assertEquals(StatisticsViewState.Empty, tested.statsViewStateLiveData.value)
     }
 
     @Test
-    fun `delete all shapes of type is called on item click`() {
+    fun `delete all shapes of type is called on item click`() = runBlockingTest {
+        init()
         val shapeType = ShapeDomainEntity.Type.TRIANGLE
-        whenever(deleteAllShapesByType.delete(any())).thenReturn(Completable.complete())
 
         tested.onItemClick(shapeType)
 

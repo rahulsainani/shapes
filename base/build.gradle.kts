@@ -15,9 +15,6 @@ dependencies {
     // Logging
     implementation(Libs.timber)
 
-    // Rx
-    implementation(Libs.rxJava)
-
     // Dependency Injection
     implementation(Libs.dagger)
     kapt(Libs.daggerCompiler)
@@ -25,6 +22,7 @@ dependencies {
 
     // AndroidX
     implementation(Libs.lifecycleViewmodel)
+    implementation(Libs.lifecycleViewmodelKtx)
     implementation(Libs.lifecycleCommonJava8)
     implementation(Libs.lifecycleExtensions)
     implementation(Libs.material)

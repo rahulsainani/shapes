@@ -1,14 +1,13 @@
 package shapes.feature.presentation.editor
 
-import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
 import com.nhaarman.mockitokotlin2.whenever
-import io.reactivex.BackpressureStrategy
-import io.reactivex.Completable
-import io.reactivex.subjects.BehaviorSubject
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.runBlockingTest
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import shapes.feature.TestObject
 import shapes.feature.domain.AddShape
@@ -17,9 +16,12 @@ import shapes.feature.domain.RetrieveShapes
 import shapes.feature.domain.ShapeDomainEntity
 import shapes.feature.domain.SwitchShape
 import shapes.feature.domain.UndoLastAction
+import shapes.test.core.CoroutinesExtension
 import shapes.test.core.InstantTask
 
+@ExperimentalCoroutinesApi
 @InstantTask
+@CoroutinesExtension
 internal class ShapesEditorViewModelTest {
 
     private val retrieveShapes: RetrieveShapes = mock()
@@ -30,12 +32,12 @@ internal class ShapesEditorViewModelTest {
 
     private lateinit var tested: ShapesEditorViewModel
 
-    private val shapesSteam = BehaviorSubject.create<List<ShapeDomainEntity>>()
+    private fun initWithFlow(flow: Flow<List<ShapeDomainEntity>>) {
+        whenever(retrieveShapes.retrieveShapes()).thenReturn(flow)
+        init()
+    }
 
-    @BeforeEach
-    fun setup() {
-        whenever(retrieveShapes.retrieveShapes())
-            .thenReturn(shapesSteam.toFlowable(BackpressureStrategy.LATEST))
+    private fun init() {
         tested = ShapesEditorViewModel(
             retrieveShapes, addShape, switchShape, deleteShape, undoLastAction
         )
@@ -44,7 +46,7 @@ internal class ShapesEditorViewModelTest {
     @Test
     fun `shapes list content is posted to live data`() {
         val shapesList = listOf<ShapeDomainEntity>(mock(), mock())
-        shapesSteam.onNext(shapesList)
+        initWithFlow(flowOf(shapesList))
 
         assertEquals(ShapesEditorViewState.Content(shapesList), tested.viewStateLiveData.value)
     }
@@ -52,42 +54,39 @@ internal class ShapesEditorViewModelTest {
     @Test
     fun `empty state is posted to live data`() {
         val shapesList = emptyList<ShapeDomainEntity>()
-        shapesSteam.onNext(shapesList)
+        initWithFlow(flowOf(shapesList))
 
         assertEquals(ShapesEditorViewState.Empty, tested.viewStateLiveData.value)
     }
 
     @Test
-    fun `add shape is called on triangle click`() {
-        whenever(addShape.addShape(any())).thenReturn(Completable.complete())
-
+    fun `add shape is called on triangle click`() = runBlockingTest {
+        init()
         tested.onTriangleClick()
 
         verify(addShape).addShape(ShapeDomainEntity.Type.TRIANGLE)
     }
 
     @Test
-    fun `add shape is called on circle click`() {
-        whenever(addShape.addShape(any())).thenReturn(Completable.complete())
-
+    fun `add shape is called on circle click`() = runBlockingTest {
+        init()
         tested.onCircleClick()
 
         verify(addShape).addShape(ShapeDomainEntity.Type.CIRCLE)
     }
 
     @Test
-    fun `add shape is called on square click`() {
-        whenever(addShape.addShape(any())).thenReturn(Completable.complete())
-
+    fun `add shape is called on square click`() = runBlockingTest {
+        init()
         tested.onSquareClick()
 
         verify(addShape).addShape(ShapeDomainEntity.Type.SQUARE)
     }
 
     @Test
-    fun `switch shape is called on shape click`() {
+    fun `switch shape is called on shape click`() = runBlockingTest {
+        init()
         val shapeDomainEntity = TestObject.shapeDomainEntity()
-        whenever(switchShape.switchShape(any())).thenReturn(Completable.complete())
 
         tested.onShapeClick(shapeDomainEntity)
 
@@ -95,9 +94,9 @@ internal class ShapesEditorViewModelTest {
     }
 
     @Test
-    fun `delete shape is called on shape long click`() {
+    fun `delete shape is called on shape long click`() = runBlockingTest {
+        init()
         val shapeDomainEntity = TestObject.shapeDomainEntity()
-        whenever(deleteShape.delete(any())).thenReturn(Completable.complete())
 
         tested.onShapeLongClick(shapeDomainEntity)
 
@@ -105,9 +104,8 @@ internal class ShapesEditorViewModelTest {
     }
 
     @Test
-    fun `undo is called on undo click`() {
-        whenever(undoLastAction.undo()).thenReturn(Completable.complete())
-
+    fun `undo is called on undo click`() = runBlockingTest {
+        init()
         tested.onUndoClick()
 
         verify(undoLastAction).undo()
