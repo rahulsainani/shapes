@@ -1,4 +1,4 @@
-package shapes.feature.di.editor
+package shapes.feature.di
 
 import dagger.Module
 import dagger.Provides

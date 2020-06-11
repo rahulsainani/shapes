@@ -17,6 +17,7 @@ dependencies {
     implementation(Libs.appCompat)
     implementation(Libs.hilt)
     kapt(Libs.hiltCompiler)
+    implementation(Libs.hiltViewModel)
 
     implementation(Libs.timber)
 }

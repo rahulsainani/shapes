@@ -26,8 +26,8 @@ object Libs {
     const val recyclerview = "androidx.recyclerview:recyclerview:${Versions.recyclerview}"
     const val material = "com.google.android.material:material:${Versions.material}"
     const val androidXActivity = "androidx.activity:activity-ktx:${Versions.androidXActivity}"
-    const val androidXHilt = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.androidXHilt}"
-    const val androidXHiltCompiler = "androidx.hilt:hilt-compiler${Versions.androidXHilt}"
+    const val hiltViewModel = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.androidXHilt}"
+    const val androidXHiltCompiler = "androidx.hilt:hilt-compiler:${Versions.androidXHilt}"
 
     const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
     const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"

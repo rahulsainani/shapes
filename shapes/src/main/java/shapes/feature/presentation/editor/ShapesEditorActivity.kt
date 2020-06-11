@@ -3,11 +3,10 @@ package shapes.feature.presentation.editor
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_shapes_editor.*
 import shapes.base.presentation.toGone
 import shapes.base.presentation.toVisible
@@ -18,16 +17,11 @@ import shapes.feature.presentation.stats.StatisticsActivity
 @AndroidEntryPoint
 class ShapesEditorActivity : AppCompatActivity(), ShapesView.ClickListener {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private lateinit var viewModel: ShapesEditorViewModel
+    private val viewModel: ShapesEditorViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shapes_editor)
-
-        viewModel = ViewModelProvider(this, viewModelFactory)[ShapesEditorViewModel::class.java]
 
         observeLiveData()
 
