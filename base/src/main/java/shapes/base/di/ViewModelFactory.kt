@@ -1,4 +1,4 @@
-package shapes.di
+package shapes.base.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider

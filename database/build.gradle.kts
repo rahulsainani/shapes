@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     kotlin("android")
     kotlin("kapt")
+    id("dagger.hilt.android.plugin")
 }
 apply(from = "${rootProject.projectDir}/android.gradle")
 
@@ -31,8 +32,8 @@ dependencies {
     implementation(Libs.roomKtx)
     kapt(Libs.roomCompiler)
 
-    implementation(Libs.dagger)
-    kapt(Libs.daggerCompiler)
+    implementation(Libs.hilt)
+    kapt(Libs.hiltCompiler)
 
     // Testing
     testImplementation(project(Modules.testCore))

@@ -1,10 +1,12 @@
-package shapes.di.module
+package shapes.base.di
 
 import androidx.lifecycle.ViewModelProvider
 import dagger.Binds
 import dagger.Module
-import shapes.di.ViewModelFactory
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 
+@InstallIn(ApplicationComponent::class)
 @Module
 abstract class ViewModelFactoryModule {
     @Binds

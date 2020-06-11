@@ -6,17 +6,16 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_shapes_editor.*
 import shapes.base.presentation.toGone
 import shapes.base.presentation.toVisible
-import shapes.di.AppComponentInjectHelper
 import shapes.feature.R
-import shapes.feature.di.editor.DaggerShapesComponent
 import shapes.feature.domain.ShapeDomainEntity
 import shapes.feature.presentation.stats.StatisticsActivity
 
+@AndroidEntryPoint
 class ShapesEditorActivity : AppCompatActivity(), ShapesView.ClickListener {
 
     @Inject
@@ -28,9 +27,7 @@ class ShapesEditorActivity : AppCompatActivity(), ShapesView.ClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shapes_editor)
 
-        inject()
-        viewModel =
-            ViewModelProviders.of(this, viewModelFactory)[ShapesEditorViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[ShapesEditorViewModel::class.java]
 
         observeLiveData()
 
@@ -53,12 +50,6 @@ class ShapesEditorActivity : AppCompatActivity(), ShapesView.ClickListener {
         }
         return true
     }
-
-    private fun inject() =
-        DaggerShapesComponent.builder()
-            .applicationComponent(AppComponentInjectHelper.provideAppComponent(applicationContext))
-            .build()
-            .inject(this)
 
     private fun observeLiveData() {
         viewModel.viewStateLiveData.observe(this, Observer { handleViewState(it) })

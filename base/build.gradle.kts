@@ -15,6 +15,8 @@ dependencies {
     implementation(Libs.timber)
 
     // Dependency Injection
+    implementation(Libs.hilt)
+    kapt(Libs.hiltCompiler)
     implementation(Libs.dagger)
     kapt(Libs.daggerCompiler)
 

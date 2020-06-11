@@ -15,7 +15,10 @@ object Versions {
     const val androidxLifecycle = "2.2.0"
     const val recyclerview = "1.1.0"
     const val material = "1.1.0"
+    const val androidXActivity = "1.1.0"
 
+    const val hilt = "2.28-alpha"
+    const val androidXHilt = "1.0.0-alpha01"
     const val dagger = "2.28"
     const val jsr305 = "3.0.2"
     const val timber = "4.7.1"

@@ -2,8 +2,8 @@ package shapes.base.presentation
 
 import android.content.Context
 import androidx.annotation.StringRes
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
-import shapes.base.di.ApplicationContext
 
 class StringsProvider @Inject constructor(
     @ApplicationContext private val context: Context

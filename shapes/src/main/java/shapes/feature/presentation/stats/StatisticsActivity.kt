@@ -6,16 +6,15 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
+import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.activity_statistics.*
 import shapes.base.presentation.toGone
 import shapes.base.presentation.toVisible
-import shapes.di.AppComponentInjectHelper
 import shapes.feature.R
-import shapes.feature.di.stats.DaggerStatisticsComponent
 
+@AndroidEntryPoint
 class StatisticsActivity : AppCompatActivity(), StatisticsAdapter.ClickListener {
 
     @Inject
@@ -28,22 +27,15 @@ class StatisticsActivity : AppCompatActivity(), StatisticsAdapter.ClickListener 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_statistics)
-        inject()
 
         viewModel =
-            ViewModelProviders.of(this, viewModelFactory)[StatisticsViewModel::class.java]
+            ViewModelProvider(this, viewModelFactory)[StatisticsViewModel::class.java]
 
         recyclerStats.layoutManager = LinearLayoutManager(this)
         recyclerStats.adapter = adapter
 
         observeLiveData()
     }
-
-    private fun inject() =
-        DaggerStatisticsComponent.builder()
-            .applicationComponent(AppComponentInjectHelper.provideAppComponent(applicationContext))
-            .build()
-            .inject(this)
 
     private fun observeLiveData() {
         viewModel.statsViewStateLiveData.observe(this, Observer { handleViewState(it) })

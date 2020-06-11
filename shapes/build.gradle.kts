@@ -3,18 +3,20 @@ plugins {
     kotlin("android")
     kotlin("kapt")
     kotlin("android.extensions")
+    id("dagger.hilt.android.plugin")
 }
 apply(from = "${rootProject.projectDir}/android.gradle")
 
 dependencies {
     implementation(project(Modules.base))
     implementation(project(Modules.database))
-    implementation(project(Modules.di))
 
     // Logging
     implementation(Libs.timber)
 
     // Dependency Injection
+    implementation(Libs.hilt)
+    kapt(Libs.hiltCompiler)
     implementation(Libs.dagger)
     kapt(Libs.daggerCompiler)
 

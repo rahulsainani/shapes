@@ -3,10 +3,13 @@ package shapes.feature.di.editor
 import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 import dagger.multibindings.IntoMap
-import shapes.di.ViewModelKey
+import shapes.base.di.ViewModelKey
 import shapes.feature.presentation.editor.ShapesEditorViewModel
 
+@InstallIn(ActivityComponent::class)
 @Module
 abstract class ShapesViewModelModule {
     @Binds
