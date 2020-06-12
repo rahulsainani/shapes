@@ -1,11 +1,14 @@
-package shapes.feature.di.editor
+package shapes.feature.di
 
 import dagger.Module
 import dagger.Provides
 import dagger.Reusable
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
 import shapes.feature.data.ShapesRepository
 import shapes.feature.domain.IShapesRepository
 
+@InstallIn(ActivityComponent::class)
 @Module
 object ShapesModule {
 

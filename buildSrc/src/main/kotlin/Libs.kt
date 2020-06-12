@@ -25,7 +25,12 @@ object Libs {
         "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}"
     const val recyclerview = "androidx.recyclerview:recyclerview:${Versions.recyclerview}"
     const val material = "com.google.android.material:material:${Versions.material}"
+    const val androidXActivity = "androidx.activity:activity-ktx:${Versions.androidXActivity}"
+    const val hiltViewModel = "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.androidXHilt}"
+    const val androidXHiltCompiler = "androidx.hilt:hilt-compiler:${Versions.androidXHilt}"
 
+    const val hilt = "com.google.dagger:hilt-android:${Versions.hilt}"
+    const val hiltCompiler = "com.google.dagger:hilt-android-compiler:${Versions.hilt}"
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}"
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}"
     const val jsr305 = "com.google.code.findbugs:jsr305:${Versions.jsr305}"
@@ -52,4 +57,5 @@ object Libs {
         "de.fayard:buildSrcVersions:${Versions.buildSrcVersionsPlugin}"
     const val ktlintGradlePlugin =
         "org.jlleitschuh.gradle:ktlint-gradle:${Versions.ktlintGradlePlugin}"
+    const val hiltGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:${Versions.hilt}"
 }

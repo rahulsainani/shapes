@@ -15,8 +15,8 @@ dependencies {
     implementation(Libs.timber)
 
     // Dependency Injection
-    implementation(Libs.dagger)
-    kapt(Libs.daggerCompiler)
+    implementation(Libs.hilt)
+    kapt(Libs.hiltCompiler)
 
     // Testing
     testImplementation(project(Modules.testCore))

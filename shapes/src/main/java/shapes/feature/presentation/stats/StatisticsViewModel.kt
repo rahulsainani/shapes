@@ -1,9 +1,9 @@
 package shapes.feature.presentation.stats
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import javax.inject.Inject
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import shapes.base.extensions.launchSafe
@@ -12,7 +12,7 @@ import shapes.feature.domain.RetrieveShapes
 import shapes.feature.domain.ShapeDomainEntity
 import timber.log.Timber
 
-class StatisticsViewModel @Inject constructor(
+class StatisticsViewModel @ViewModelInject constructor(
     private val retrieveShapes: RetrieveShapes,
     private val deleteAllShapesByType: DeleteAllShapesByType,
     private val statisticsViewEntityMapper: StatisticsViewEntityMapper

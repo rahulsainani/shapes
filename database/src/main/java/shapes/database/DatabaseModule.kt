@@ -1,15 +1,15 @@
-package shapes.di.module
+package shapes.database
 
 import android.content.Context
 import androidx.room.Room
 import dagger.Module
 import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Singleton
-import shapes.base.di.ApplicationContext
-import shapes.database.AppDatabase
-import shapes.database.ShapesDao
-import shapes.database.ShapesDao_Impl
 
+@InstallIn(ApplicationComponent::class)
 @Module
 object DatabaseModule {
 

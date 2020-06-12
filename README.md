@@ -40,7 +40,7 @@ A simple android app that draws shapes on a canvas showcasing MVVM + Clean Archi
 - [Livedata](https://developer.android.com/topic/libraries/architecture/livedata)
 - [Room](https://developer.android.com/topic/libraries/architecture/room)
   for Disk Persistance
-- [Dagger](https://github.com/google/dagger) for Dependency Injection
+- [Dagger Hilt](https://github.com/google/dagger/tree/master/java/dagger/hilt) for Dependency Injection
 - [Lottie](https://github.com/airbnb/lottie-android) for easy animations
 - [Timber](https://github.com/JakeWharton/timber) for logging
 - [JUnit 5](https://junit.org/junit5/docs/current/user-guide/),

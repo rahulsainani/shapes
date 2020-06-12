@@ -1,9 +1,9 @@
 package shapes.feature.presentation.editor
 
+import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import javax.inject.Inject
 import kotlinx.coroutines.flow.collect
 import shapes.base.extensions.launchSafe
 import shapes.feature.domain.AddShape
@@ -14,7 +14,7 @@ import shapes.feature.domain.SwitchShape
 import shapes.feature.domain.UndoLastAction
 import timber.log.Timber
 
-class ShapesEditorViewModel @Inject constructor(
+class ShapesEditorViewModel @ViewModelInject constructor(
     private val retrieveShapes: RetrieveShapes,
     private val addShape: AddShape,
     private val switchShape: SwitchShape,

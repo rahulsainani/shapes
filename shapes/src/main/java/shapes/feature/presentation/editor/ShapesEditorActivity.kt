@@ -3,34 +3,25 @@ package shapes.feature.presentation.editor
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
-import javax.inject.Inject
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_shapes_editor.*
 import shapes.base.presentation.toGone
 import shapes.base.presentation.toVisible
-import shapes.di.AppComponentInjectHelper
 import shapes.feature.R
-import shapes.feature.di.editor.DaggerShapesComponent
 import shapes.feature.domain.ShapeDomainEntity
 import shapes.feature.presentation.stats.StatisticsActivity
 
+@AndroidEntryPoint
 class ShapesEditorActivity : AppCompatActivity(), ShapesView.ClickListener {
 
-    @Inject
-    lateinit var viewModelFactory: ViewModelProvider.Factory
-
-    private lateinit var viewModel: ShapesEditorViewModel
+    private val viewModel: ShapesEditorViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_shapes_editor)
-
-        inject()
-        viewModel =
-            ViewModelProviders.of(this, viewModelFactory)[ShapesEditorViewModel::class.java]
 
         observeLiveData()
 
@@ -53,12 +44,6 @@ class ShapesEditorActivity : AppCompatActivity(), ShapesView.ClickListener {
         }
         return true
     }
-
-    private fun inject() =
-        DaggerShapesComponent.builder()
-            .applicationComponent(AppComponentInjectHelper.provideAppComponent(applicationContext))
-            .build()
-            .inject(this)
 
     private fun observeLiveData() {
         viewModel.viewStateLiveData.observe(this, Observer { handleViewState(it) })
